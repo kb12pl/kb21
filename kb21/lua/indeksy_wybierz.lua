@@ -1,0 +1,1 @@
+return kb.sys_dialog('Ind-B')

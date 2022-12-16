@@ -1,0 +1,30 @@
+﻿<Window x:Class="kb12.MyFrame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:local="clr-namespace:kb12"
+        mc:Ignorable="d"
+        Background="Black"
+        Title="MainWindow" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+
+
+    <DockPanel Background="Black">       
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="New" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Command="Cut" />
+                <MenuItem Command="Copy" />
+                <MenuItem Command="Paste" />
+            </MenuItem>
+        </Menu>        
+        <Border BorderThickness="0">            
+            <TabControl Name="myTabCtrl" Background="Black"/>            
+        </Border>
+    </DockPanel>    
+</Window>
