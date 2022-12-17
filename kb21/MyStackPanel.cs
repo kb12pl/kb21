@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using kb_lib;
-using static kb_lib.Log;
+using kb21;
+using static kb21.Log;
 
-namespace kb12
+namespace kb21
 {
     class MyStackPanel:StackPanel,MyCtrl
     {         

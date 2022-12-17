@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using kb_lib;
+using kb21;
 
 
-namespace kb12
+namespace kb21
 {
     class MyButton:Button,MyCtrl
     {

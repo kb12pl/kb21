@@ -1,13 +1,13 @@
 ﻿using ICSharpCode.AvalonEdit.Editing;
-using kb_lib;
+using kb21;
 using Newtonsoft.Json.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using static kb_lib.Log;
+using static kb21.Log;
 
 
-namespace kb12
+namespace kb21
 {
 
     internal class KbList : ListBox, MyCtrl

@@ -1,13 +1,13 @@
-﻿using kb_lib;
+﻿using kb21;
 using NLua;
-using imp_lib;
+using kb21;
 using kb_ret;
-using static kb_lib.Log;
-using System.Threading.Tasks;
-using Nito.AsyncEx.Synchronous;
+using static kb21.Log;
+//using System.Threading.Tasks;
+//using Nito.AsyncEx.Synchronous;
 
 
-namespace kb12
+namespace kb21
 {
     partial class KbWindow
     {

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-using kb_lib;
-using static kb_lib.Log;
-using static kb_lib.Conf;
+using kb21;
+using static kb21.Log;
+using static kb21.Conf;
 using System.Windows.Forms;
 
-namespace kb12
+namespace kb21
 {
     public partial class KbWindow
     {

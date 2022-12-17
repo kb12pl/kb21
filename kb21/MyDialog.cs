@@ -1,8 +1,8 @@
 ﻿using System.Windows;
-using kb_lib;
-using static kb_lib.Conf;
+using kb21;
+using static kb21.Conf;
 
-namespace kb12
+namespace kb21
 {
     /// <summary>
     /// 222

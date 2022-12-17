@@ -1,6 +1,6 @@
 ﻿
 
-namespace kb_lib
+namespace kb21
 {
     public delegate void Del(string mess);
     public delegate void DelClear();

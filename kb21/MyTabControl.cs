@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace kb12
+namespace kb21
 {
     public class MyTabControl: TabControl
     {

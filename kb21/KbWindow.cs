@@ -4,17 +4,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using NLua;
-using kb_lib;
-using static kb_lib.Log;
-using static kb_lib.Conf;
+using kb21;
+using static kb21.Log;
+using static kb21.Conf;
 
-namespace kb12
+namespace kb21
 {
     public partial class KbWindow
     {
 
 
-        public readonly kb_lib.Lua lua;        
+        public readonly kb21.Lua lua;        
         static readonly Dictionary<string, MyDialog> dialog_list = new();
         public static readonly Dictionary<string, object> globals = new();
         readonly ContentControl contentControl;
@@ -107,7 +107,7 @@ namespace kb12
             if (arg.Is("page"))
             {
                 var page = new MyTabItem(arg);
-                kb_lib.Lua.CopyTable("B12_Integretion_arg", tab, page.win.lua);
+                kb21.Lua.CopyTable("B12_Integretion_arg", tab, page.win.lua);
                 ret = page.win.lua.DoString(xconf("new_window_init_script"));
                 if (ret != "")
                     return arg.Error(ret);
@@ -122,7 +122,7 @@ namespace kb12
                 dialog_list[smb]=dialog;
             }
 
-            kb_lib.Lua.CopyTable("B12_Integretion_arg", tab, dialog.win.lua);
+            kb21.Lua.CopyTable("B12_Integretion_arg", tab, dialog.win.lua);
             dialog.Owner = App.Current.MainWindow;
             
             ret = dialog.win.lua.DoString(xconf("new_window_init_script"));
@@ -142,7 +142,7 @@ namespace kb12
 
             
             dialog.ShowDialog();
-            kb_lib.Lua.CopyTable("B12_Integretion_ret", dialog.win.lua, lua);
+            kb21.Lua.CopyTable("B12_Integretion_ret", dialog.win.lua, lua);
             dialog.Close();
             return false;
         }

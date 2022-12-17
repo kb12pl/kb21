@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using kb_lib;
-namespace kb12
+using kb21;
+namespace kb21
 {
     class MyDockPanel: DockPanel, MyCtrl
     {

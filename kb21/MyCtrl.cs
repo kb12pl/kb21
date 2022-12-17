@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using kb_lib;
+using kb21;
 
-namespace kb12
+namespace kb21
 {
     interface MyCtrl
     {

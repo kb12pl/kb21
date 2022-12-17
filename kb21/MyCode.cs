@@ -11,13 +11,13 @@ using System.Xml;
 using System.Windows.Media;
 using System.Text.RegularExpressions;
 using System.Windows.Documents; 
-using kb_lib;
-using static kb_lib.Log;
+using kb21;
+using static kb21.Log;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Forms;
 
-namespace kb12
+namespace kb21
 {
     class MyCode : TextEditor, MyCtrl
     {
@@ -36,7 +36,7 @@ namespace kb12
             // Load our custom highlighting definition
             IHighlightingDefinition customHighlighting;
             ColorizeSearchResultsBackgroundRenderer searchColorizor = new();
-            using (Stream s = typeof(MyFrame).Assembly.GetManifestResourceStream("kb12.lua.xshd"))
+            using (Stream s = typeof(MyFrame).Assembly.GetManifestResourceStream("kb21.lua.xshd"))
             {
                 if (s == null)
                     ok("Could not find embedded resource");

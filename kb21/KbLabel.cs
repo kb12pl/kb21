@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using kb_lib;
+using kb21;
 
 
-namespace kb12
+namespace kb21
 {
     internal class KbLabel : Label, MyCtrl
     {

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using kb_lib;
-using static kb_lib.Log;
+using kb21;
+using static kb21.Log;
 using Microsoft.Web.WebView2;
 using Microsoft.Web.WebView2.Wpf;
 using static System.Net.Mime.MediaTypeNames;
 using System.Threading;
 
-namespace kb12
+namespace kb21
 {
     internal class KbWebView:WebView2,MyCtrl
     {

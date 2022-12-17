@@ -6,10 +6,10 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using kb_lib;
-using static kb_lib.Log;
+using kb21;
+using static kb21.Log;
 
-namespace kb12
+namespace kb21
 {
     class MyDataGrid:DataGrid,MyCtrl
     {        

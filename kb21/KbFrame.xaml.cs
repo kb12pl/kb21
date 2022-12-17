@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using static kb_lib.Conf;
-using static kb_lib.Log;
-namespace kb12
+using static kb21.Conf;
+using static kb21.Log;
+namespace kb21
 {
     public partial class MyFrame : Window
     { 

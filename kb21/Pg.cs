@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using Faithlife.Utility.Dapper;
-using kb_lib;
+//using Faithlife.Utility.Dapper;
 using kb_ret;
-using static kb_lib.Log;
+using static kb21.Log;
 using System.Data;
 using static Npgsql.Replication.PgOutput.Messages.RelationMessage;
 
-namespace imp_lib
+namespace kb21
 {
 
     public class Pg

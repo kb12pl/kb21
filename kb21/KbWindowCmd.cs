@@ -2,12 +2,11 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using kb_lib;
-using static kb_lib.Log;
-using static kb_lib.Conf;
+using static kb21.Log;
+using static kb21.Conf;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace kb12
+namespace kb21
 {
     public partial class KbWindow
     {

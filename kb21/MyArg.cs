@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NLua;
 
-namespace kb_lib
+namespace kb21
 {
     public class MyArg
     {        

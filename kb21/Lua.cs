@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using NLua;
-using static kb_lib.Log;
-using static kb_lib.Conf;
+using static kb21.Log;
+using static kb21.Conf;
 
-namespace kb_lib
+namespace kb21
 {
     public class Lua
     {
