@@ -111,7 +111,8 @@ function win:readScript(name)
 		win:error("read script no name")
 	end
 		
-    local file=io.open(KbWindow.GetConfig('prefix_file_script')..name..'.lua')
+    
+    local file=io.open(win.ptr:GetConfig('prefix_file_script')..name..'.lua')
     if not file then    
        win:error("error open file or read: "..name)
     end
@@ -173,10 +174,10 @@ end
 function win:global(key,val)    
 	key=tostring(key)
 	if val then        
-		KbWindow.SetGlobal(key,val)
+		self.ptr:SetGlobal(key,val)
 		return val
 	else        
-		return KbWindow.GetGlobal(key)
+		return self.ptr:GetGlobal(key)
 	end
 end
 

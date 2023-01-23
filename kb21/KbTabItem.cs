@@ -16,7 +16,7 @@ namespace kb21
 
         private void MyLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            win.Integration(xconf("window_on_load_event"));            
+            win.Integration(Conf("window_on_load_event"));            
         }
 
     }

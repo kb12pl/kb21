@@ -29,9 +29,9 @@ namespace kb21_tools
         public void Set(int key,object val)=>dic[key] = val;
         public void Set(int row, int col, object val) => Set(row * cols + col, val);
         public void Set(string key, object val)=>key_val[key] = val;
-        
-        
-        public string Get(int row, int col)=>dic[row * cols + col].ToString();        
+
+
+        public string Get(int row, int col) => dic[row * cols + col].ToString();        
         public string Get(string key)=> key_val[key].ToString();
 
         public string GetLabel(int col)=>labels[col];

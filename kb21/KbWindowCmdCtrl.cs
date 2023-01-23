@@ -13,7 +13,7 @@ namespace kb21
             var arg = new MyArg(tab);
             if (!ctrl_list.TryGetValue(arg.Get("id"), out KbCtrl? ctrl))
             {
-                xlog("ctrl is null");
+                ok("ctrl is null");
                 return arg.Error("ctrl is null");
             }
 

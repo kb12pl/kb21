@@ -12,6 +12,7 @@ namespace kb21_tools
     {        
         static bool isLoad = false;        
         static Dictionary<string, string> dictSecret = new();
+        public static readonly Dictionary<string, object> globals = new();
         static readonly Dictionary<string, string> dict = new();
         static KbConf()
         {
@@ -22,14 +23,17 @@ namespace kb21_tools
             dict["frame_init_script"] = "kb.sys_boot()";
             dict["new_window_init_script"] = "win:on_boot()";
             dict["window_on_load_event"] = "on_load";
-            
-            dict["initLua"] = @"
-import('kb21')
-function ok(kom)
-    KbWindow.KbWindowOk(tostring(kom));
-end
 
-dofile(KbWindow.GetConfig('prefix_file_script')..'sys_window.lua')
+            dict["initKb21"] = @"
+function ok(kom)    
+    B12_Integretion_Object:Ok(tostring(kom));
+end
+dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
+";
+            dict["initProgram"] = @"
+function ok(kom)
+    B12_Integretion_Object:Ok(tostring(kom));
+end
 ";
         }
         public static string Secret(string key)
@@ -39,7 +43,7 @@ dofile(KbWindow.GetConfig('prefix_file_script')..'sys_window.lua')
             
         }
 #pragma warning disable IDE1006 // Naming Styles
-        public static string xconf(string key)
+        public static string Conf(string key)
         {            
             if (dict.TryGetValue(key, out string? obj))
             {
@@ -51,7 +55,7 @@ dofile(KbWindow.GetConfig('prefix_file_script')..'sys_window.lua')
 
         public static string GetScript(string script)
         {
-            return File.ReadAllText(xconf("prefix_file_script") + script + ".lua");
+            return File.ReadAllText(Conf("prefix_file_script") + script + ".lua");
         }
 
         static void Load()
@@ -60,10 +64,22 @@ dofile(KbWindow.GetConfig('prefix_file_script')..'sys_window.lua')
                 return;
 
             Dictionary<string, string>? tmp;
-            tmp= JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(xconf("secret_config_file")));
+            tmp= JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Conf("secret_config_file")));
             if (tmp is not null)
                 dictSecret = tmp;
             isLoad = true;
+        }
+        public static void SetGlobal(string key, object b)
+        {
+            globals[key] = b;
+        }
+        public static object? GetGlobal(string key)
+        {
+            if (globals.TryGetValue(key, out object? obj))
+            {
+                return obj;
+            }
+            return null;
         }
     }
 }

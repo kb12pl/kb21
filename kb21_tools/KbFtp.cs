@@ -60,7 +60,7 @@ namespace kb21_tools
                 // if this is a file
                 if (item.Type == FtpObjectType.File)
                 {
-                    xlog(item.FullName);
+                    ok(item.FullName);
                     // get the file size
                     long size = client.GetFileSize(item.FullName);
 

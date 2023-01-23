@@ -8,20 +8,19 @@ namespace kb21_tools
     public class KbLua
     {
         private readonly NLua.Lua lua = new();
-        public KbLua(object o)
+        public KbLua(object o,string init)
         {
             lua.LoadCLRPackage();
             lua.State.Encoding = Encoding.UTF8;
             lua["B12_Integretion_Object"] = o;
-            DoString(KbConf.xconf("initLua"));
+            DoString(KbConf.Conf(init));
         }
 
         public NLua.Lua GetPtr() => lua;               
         public string DoScript(string script)=>DoString(KbConf.GetScript(script));
 
         public string DoString(string script)
-        {        
-            
+        {     
             //xlog(script);
             try
             {
@@ -35,7 +34,7 @@ namespace kb21_tools
                 if (e.Message == "close")
                     return "close";
 
-                xlog(e.Message);
+                ok(e.Message);
                 return "stop";
             }
         }
@@ -61,7 +60,7 @@ namespace kb21_tools
         {
             if (tb1 == null)
             {
-                xlog("Lua Table is nil: " + path);
+                ok("Lua Table is nil: " + path);
                 return null;
             }
 

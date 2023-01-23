@@ -13,21 +13,15 @@ namespace kb21_tools
             handler_clear = _handler_clear;
         }
 #pragma warning disable IDE1006 // Naming Styles
-        public static void xlog(string mess)        
+        public static void ok(object mess)        
         {
-            handler?.Invoke(mess);
+            handler?.Invoke(mess.ToString());
         }
-        public static void xlog(int mess) => xlog(mess.ToString());       
-
-        public static void ok(string mess) => xlog(mess);
-        public static void ok(int mess) => xlog(mess.ToString());
-        public static void xlogclear() => handler_clear?.Invoke();
-
-        public static void xlog(object mess, object mess2)
+        public static void ok(object mess, object mess2)
         {
             string m1 = mess.ToString();
             string m2 = mess2.ToString();
-            xlog($"( {m1} )  ( {m2} )");
+            ok($"( {m1} )  ( {m2} )");
         }
 
 #pragma warning restore IDE1006 // Naming Styles

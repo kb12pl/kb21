@@ -4,8 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using NLua;
-using static kb21_tools.KbConf;
-using kb21_tools;
+
 
 namespace kb21
 {
@@ -17,39 +16,30 @@ namespace kb21
         readonly ContentControl contentControl;
         private readonly bool dialog;
         private readonly bool page;
-        public static void KbWindowOk(string mes) => ok(mes);
-        public static void KbWindowOkClear() => xlogclear();
+        //public static void KbWindowOk(string mes) => ok(mes);
+        //public static void KbWindowOkClear() => xlogclear();
         internal KbWindow(KbDialog _dialog, MyArg arg)
         {
-            lua = new(this);
+            lua = new(this, "initKb21");
             contentControl = _dialog;
             dialog = true;            
         }
         public KbWindow(Window _frame)
         {
-            lua = new(this);
+            lua = new(this, "initKb21");
             contentControl = _frame;            
         }
         internal KbWindow(KbTabItem _page)
         {
-            lua = new(this);
+            lua = new(this, "initKb21");
             contentControl = _page;
             page = true;            
         }
 
-        public static string GetConfig(string key)=>xconf(key);
-        public static void SetGlobal(string key, object b)
-        {   
-            globals[key] = b;
-        }
-        public static object? GetGlobal(string key)
-        {            
-            if (globals.TryGetValue(key,out object? obj))            
-            {         
-                return obj;
-            }
-            return null;
-        }
+        public void Ok(object mess)=>ok(mess);       
+        public string GetConfig(string key)=>Conf(key);
+        public void SetGlobal(string key, object b) => KbConf.SetGlobal(key, b);
+        public object? GetGlobal(string key)=>KbConf.GetGlobal(key);
 
         public string? Shortcut(string shortcut, string kod,bool shift=false, bool alt=false,bool ctrl=false )
         {
@@ -125,7 +115,7 @@ namespace kb21
             {
                 var page = new KbTabItem(arg);
                 KbLua.CopyTable("B12_Integretion_arg", tab, page.win.lua);
-                ret = page.win.lua.DoString(xconf("new_window_init_script"));
+                ret = page.win.lua.DoString(Conf("new_window_init_script"));
                 if (ret != "")
                     return arg.Error(ret);
 
@@ -142,7 +132,7 @@ namespace kb21
             KbLua.CopyTable("B12_Integretion_arg", tab, dialog.win.lua);
             dialog.Owner = App.Current.MainWindow;
             
-            ret = dialog.win.lua.DoString(xconf("new_window_init_script"));
+            ret = dialog.win.lua.DoString(Conf("new_window_init_script"));
             
             if (ret != "")
             {

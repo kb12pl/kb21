@@ -3,20 +3,24 @@ using kb21_tools;
 
 
 
+
+
 LogInit(Console.WriteLine);
+var myInt= new MyProgramIntegration();
 int k = 0;
-while (k<8)
+var lua = new KbLua(myInt,"initProgram");
+while (true)
 {    
-    xlog("Step",k);
+
+    ok("Step",k);
     k++;
-    var deep = new KbDeepL();
-    if (k % 4 == 0)
-    {
-        xlog("send");
-        deep.Trans();
-    }
-    
-    await Task.Delay(100);
+    lua.DoScript("program");    
+    await Task.Delay(3000);
+
+}
 
 
+class MyProgramIntegration
+{
+    public void Ok(object mess) => ok(mess);
 }
