@@ -1,18 +1,17 @@
 ﻿using System.Windows;
-using kb21;
-using static kb21.Conf;
+
 
 namespace kb21
 {
     /// <summary>
     /// 222
     /// </summary>
-    class MyDialog:Window
+    class KbDialog:Window
     {
         public readonly KbWindow win;
         //internal bool isError=false;
 
-        public MyDialog(MyArg arg)
+        public KbDialog(MyArg arg)
         {
 
             win = new(this,arg);            

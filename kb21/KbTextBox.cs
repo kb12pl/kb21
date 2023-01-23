@@ -1,18 +1,18 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using kb21;
-using static kb21.Log;
+
 
 namespace kb21
 {
-    class MyTextBox:TextBox,MyCtrl
+    class KbTextBox:TextBox,KbCtrl
     {
         private readonly KbWindow win;
         string id;
         bool onKey;
         bool onEnter;
 
-        public MyTextBox(MyArg arg, KbWindow _win)
+        public KbTextBox(MyArg arg, KbWindow _win)
         {
             win=_win;
             id = arg.Get("id");

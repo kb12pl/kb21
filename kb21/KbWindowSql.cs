@@ -1,10 +1,4 @@
-﻿using kb21;
-using NLua;
-using kb21;
-using kb_ret;
-using static kb21.Log;
-//using System.Threading.Tasks;
-//using Nito.AsyncEx.Synchronous;
+﻿using NLua;
 
 
 namespace kb21
@@ -17,7 +11,7 @@ namespace kb21
 
             //var task = Task.Run(async () => await Pg.Select(arg));
             //var ret= task.WaitAndUnwrapException();
-            var ret = Pg.Select(arg);
+            var ret = KbPg.Select(arg);
 
             return ret;
         }

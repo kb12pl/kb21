@@ -1,29 +1,20 @@
 ﻿using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
-//using Faithlife.Utility.Dapper;
-using kb_ret;
-using static kb21.Log;
-using System.Data;
-using static Npgsql.Replication.PgOutput.Messages.RelationMessage;
 
-namespace kb21
+
+namespace kb21_tools
 {
 
-    public class Pg
+    public class KbPg
     {
         static string connString; 
           
-        static Pg()
+        static KbPg()
         {
-            connString += "Host=" + Conf.Secret("pg.host") + ";";
-            connString += "Database=" + Conf.Secret("pg.database") + ";";
-            connString+= "Username="+Conf.Secret("pg.user")+";";
-            connString+= "Password="+Conf.Secret("pg.pass")+";";            
+            connString += "Host=" + KbConf.Secret("pg.host") + ";";
+            connString += "Database=" + KbConf.Secret("pg.database") + ";";
+            connString+= "Username="+KbConf.Secret("pg.user")+";";
+            connString+= "Password="+KbConf.Secret("pg.pass")+";";            
 
         }
         public static async Task InsertAsync(string query, object[] rows)
@@ -92,7 +83,7 @@ namespace kb21
                     ret.Set(row, i, reader.GetString(i));
                 row++;
             }
-            ret.SetRows(row);
+            //ret.SetRows(row);
             conn.Close();
             return ret;
         }

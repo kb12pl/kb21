@@ -3,7 +3,6 @@ using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Rendering;
-
 using System;
 using System.IO;
 using System.Linq;
@@ -11,20 +10,18 @@ using System.Xml;
 using System.Windows.Media;
 using System.Text.RegularExpressions;
 using System.Windows.Documents; 
-using kb21;
-using static kb21.Log;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace kb21
 {
-    class MyCode : TextEditor, MyCtrl
+    class KbCode : TextEditor, KbCtrl
     {
         KbWindow win;
         string id;
         string last_under_caret;
-        public MyCode(MyArg arg, KbWindow _win)
+        public KbCode(MyArg arg, KbWindow _win)
         {
             id = arg.Get("id");
             win = _win;
@@ -36,7 +33,7 @@ namespace kb21
             // Load our custom highlighting definition
             IHighlightingDefinition customHighlighting;
             ColorizeSearchResultsBackgroundRenderer searchColorizor = new();
-            using (Stream s = typeof(MyFrame).Assembly.GetManifestResourceStream("kb21.lua.xshd"))
+            using (Stream s = typeof(MyFrame).Assembly.GetManifestResourceStream("kb21.KbCodeLua.xshd"))
             {
                 if (s == null)
                     ok("Could not find embedded resource");

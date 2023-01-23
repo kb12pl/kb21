@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using kb21;
-using static kb21.Conf;
+﻿using System.Windows.Controls;
+
+
 
 namespace kb21
 {
-    public class MyTabItem:TabItem
+    public class KbTabItem:TabItem
     {
         public readonly KbWindow win;
-        public MyTabItem(MyArg arg)
+        public KbTabItem(MyArg arg)
         {
             win = new(this);
             Header = arg.Get("title");

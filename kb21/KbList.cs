@@ -4,13 +4,13 @@ using Newtonsoft.Json.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using static kb21.Log;
+using static kb21_tools.KbLog;
 
 
 namespace kb21
 {
 
-    internal class KbList : ListBox, MyCtrl
+    internal class KbList : ListBox, KbCtrl
     {
         class KbListItem
         {

@@ -3,13 +3,13 @@ using System.Windows.Controls;
 using kb21;
 namespace kb21
 {
-    class MyDockPanel: DockPanel, MyCtrl
+    class KbDockPanel: DockPanel, KbCtrl
     {
         static void ok(object a) => MyFrame.ok(a);
-        public MyDockPanel()
+        public KbDockPanel()
         {
         }
-        public bool Add(MyCtrl ctrl, MyArg arg)
+        public bool Add(KbCtrl ctrl, MyArg arg)
         {
             Children.Add((UIElement)ctrl);
             return false;

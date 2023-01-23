@@ -7,9 +7,9 @@ using System.Windows.Controls;
 
 namespace kb21
 {
-    public class MyTabControl: TabControl
+    public class KbTabControl: TabControl
     {
-        public MyTabControl()
+        public KbTabControl()
         {
         
         }

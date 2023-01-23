@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentFTP;
-using static kb21.Log;
-using static kb21.Conf;
 using FluentFTP.Helpers;
 using System.Diagnostics;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 
+using static kb21_tools.KbLog;
+using static kb21_tools.KbConf;
 
-namespace kb21
+
+namespace kb21_tools
 {
     public class Ftp
     {

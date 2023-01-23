@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
-using static kb21.Log;
 using System.Threading;
+using static kb21_tools.KbLog;
 
-namespace kb21
-{
-    
+namespace kb21_tools
+{    
     public class Serial
     {
         

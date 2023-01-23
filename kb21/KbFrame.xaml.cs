@@ -1,7 +1,12 @@
-﻿using System.Windows;
+﻿global using kb21_tools;
+global using static kb21_tools.KbConf;
+global using static kb21_tools.KbLog;
+
+
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
-using static kb21.Conf;
-using static kb21.Log;
+
 namespace kb21
 {
     public partial class MyFrame : Window
@@ -21,12 +26,13 @@ namespace kb21
         private void MyLoaded(object sender, RoutedEventArgs e)        
         {
             staticTabControl = myTabCtrl;            
+            
             win.lua.DoString(xconf("frame_init_script"));
         }
         
         
 
-        internal static bool NewPage(MyTabItem page)
+        internal static bool NewPage(KbTabItem page)
         {
             staticTabControl.Items.Add(page);
             staticTabControl.SelectedItem = page;
@@ -34,7 +40,7 @@ namespace kb21
             return false;
         }
 
-        internal static bool Remove(MyTabItem page)
+        internal static bool Remove(KbTabItem page)
         {
             staticTabControl.Items.Remove(page);
             // staticTabControl.Focus();

@@ -1,23 +1,23 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 using NLua;
-using static kb21.Log;
-using static kb21.Conf;
+using static kb21_tools.KbLog;
 
-namespace kb21
+namespace kb21_tools
 {
-    public class Lua
+    public class KbLua
     {
         private readonly NLua.Lua lua = new();
-        public Lua(object o)
+        public KbLua(object o)
         {
             lua.LoadCLRPackage();
             lua.State.Encoding = Encoding.UTF8;
             lua["B12_Integretion_Object"] = o;
-            DoString(xconf("initLua"));
+            DoString(KbConf.xconf("initLua"));
         }
 
         public NLua.Lua GetPtr() => lua;               
-        public string DoScript(string script)=>DoString(Conf.GetScript(script));
+        public string DoScript(string script)=>DoString(KbConf.GetScript(script));
 
         public string DoString(string script)
         {        
@@ -41,7 +41,7 @@ namespace kb21
         }
 
 
-        public static void CopyTable(string v, Lua lua1, Lua lua2)
+        public static void CopyTable(string v, KbLua lua1, KbLua lua2)
         {
             LuaTable tb1 = lua1.lua[v] as LuaTable;
             lua2.lua.NewTable(v);
@@ -57,7 +57,7 @@ namespace kb21
             }
         }
 
-        public static LuaTable CopyTable(string path, LuaTable tb1, Lua lua2)
+        public static LuaTable CopyTable(string path, LuaTable tb1, KbLua lua2)
         {
             if (tb1 == null)
             {

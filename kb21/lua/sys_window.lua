@@ -289,9 +289,10 @@ function B12_Integretion_Function(event,id,par_1,par_2)
 	end
 	
     if id=="" then            
-        if win[event] then  
-            win:pcall(win[event],win,par_1)    
+        if win[event] then          	
+            win:pcall(win[event],win,par_1,par_2)                            
         end        
+        return
     else    
         
         local control=ctrl[id]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using kb21;
-using static kb21.Log;
+using static kb21_tools.KbLog;
 using Microsoft.Web.WebView2;
 using Microsoft.Web.WebView2.Wpf;
 using static System.Net.Mime.MediaTypeNames;
@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace kb21
 {
-    internal class KbWebView:WebView2,MyCtrl
+    internal class KbWebView:WebView2,KbCtrl
     {
         KbWindow win;
         string id;

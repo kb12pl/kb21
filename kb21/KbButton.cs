@@ -1,16 +1,16 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using kb21;
+using kb21_tools;
 
 
 namespace kb21
 {
-    class MyButton:Button,MyCtrl
+    class KbButton:Button,KbCtrl
     {
         KbWindow win;
         string id;
 
-        public MyButton(MyArg arg, KbWindow _win)
+        public KbButton(MyArg arg, KbWindow _win)
         {
             id = arg.Get("id");
             win = _win;

@@ -6,7 +6,7 @@ using kb21;
 
 namespace kb21
 {
-    internal class KbLabel : Label, MyCtrl
+    internal class KbLabel : Label, KbCtrl
     {
 
         KbWindow win;

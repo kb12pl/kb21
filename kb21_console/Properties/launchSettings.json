@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "kb21_console": {
+      "commandName": "Project",
+      "hotReloadEnabled": false
+    }
+  }
+}

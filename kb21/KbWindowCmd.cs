@@ -2,9 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static kb21.Log;
-using static kb21.Conf;
 using static System.Net.Mime.MediaTypeNames;
+using System.Threading.Tasks;
+
+using kb21_tools;
 
 namespace kb21
 {
@@ -13,14 +14,15 @@ namespace kb21
         public bool CmdWin(LuaTable tab)
         {
             var arg = new MyArg(tab);
-            var error = true;            
+            var error = true;
+
             if (arg.Is("title"))
             {
                 if (dialog)
                 {
                     Window w = (Window)contentControl;
                     w.Title = arg.Get("title");
-                    error=false;
+                    error = false;
                 }
             }
             if (dialog && arg.Is("maximized"))
@@ -62,7 +64,7 @@ namespace kb21
 
             if(arg.Try("smb",out string smb))
             {
-                MyDialog dialog = dialog_list[smb];
+                KbDialog dialog = dialog_list[smb];
                 dialog.Topmost = true;
                 if (dialog != null)
                 {
@@ -70,7 +72,7 @@ namespace kb21
                 }
                 return false;                
             }
-
+ 
             if (error)
                 return arg.Error("unknown command");
             

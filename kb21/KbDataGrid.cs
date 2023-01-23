@@ -7,16 +7,16 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 using kb21;
-using static kb21.Log;
+
 
 namespace kb21
 {
-    class MyDataGrid:DataGrid,MyCtrl
+    class KbDataGrid:DataGrid,KbCtrl
     {        
         KbWindow win;
         string id;
 
-        public MyDataGrid(MyArg arg, KbWindow _win)
+        public KbDataGrid(MyArg arg, KbWindow _win)
         {
 
             id = arg.Get("id");

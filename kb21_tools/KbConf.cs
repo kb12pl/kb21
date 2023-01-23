@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace kb21
+namespace kb21_tools
 {
-    public class Conf
+    public class KbConf
     {        
         static bool isLoad = false;        
         static Dictionary<string, string> dictSecret = new();
         static readonly Dictionary<string, string> dict = new();
-        static Conf()
+        static KbConf()
         {
             dict["test"] = "123";
             dict["B12_Integretion_Object"] = "B12_Integretion_Object";

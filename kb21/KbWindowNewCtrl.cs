@@ -3,36 +3,31 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-using kb21;
-using static kb21.Log;
-using static kb21.Conf;
-using System.Windows.Forms;
-
 namespace kb21
 {
     public partial class KbWindow
     {
-        readonly Dictionary<string, MyCtrl> ctrl_list = new();
+        readonly Dictionary<string, KbCtrl> ctrl_list = new();
 
         public bool NewCtrl(LuaTable tab)
         {
             MyArg arg = new(tab);            
-            MyCtrl? ctrl =null;
+            KbCtrl? ctrl =null;
             
             var id = arg.Get("id");
 
             if (arg.Is("isGrid"))
-                ctrl = new MyDataGrid(arg, this);
+                ctrl = new KbDataGrid(arg, this);
             if (arg.Is("isButton"))
-                ctrl = new MyButton(arg, this);
+                ctrl = new KbButton(arg, this);
             if (arg.Is("isText"))
-                ctrl = new MyTextBox(arg, this);
+                ctrl = new KbTextBox(arg, this);
             if (arg.Is("isStack"))
-                 ctrl = new MyStackPanel(arg);
+                 ctrl = new KbStackPanel(arg);
             if (arg.Is("isDock"))
-                ctrl = new MyDockPanel();
+                ctrl = new KbDockPanel();
             if (arg.Is("isCode"))
-                ctrl = new MyCode(arg, this);
+                ctrl = new KbCode(arg, this);
             if (arg.Is("isList"))
                 ctrl = new KbList(arg, this);
             if (arg.Is("isLabel"))
@@ -72,7 +67,7 @@ namespace kb21
             
             var pa = arg.Get("parent") ?? "";
 
-            if (!ctrl_list.TryGetValue(pa, out MyCtrl? parent))
+            if (!ctrl_list.TryGetValue(pa, out KbCtrl? parent))
             {
                 ok("parent not exists: "+pa);
                 return arg.Error("parent not exists");

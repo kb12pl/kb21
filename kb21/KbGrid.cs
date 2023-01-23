@@ -6,9 +6,9 @@ using kb21;
 
 namespace kb21
 {    
-    class MyGrid:Grid,MyCtrl
+    class KbGrid:Grid,KbCtrl
     {    
-        public MyGrid()
+        public KbGrid()
         {
             var border = new Border();
             border.BorderThickness = new Thickness(5, 5, 5, 5);
@@ -17,7 +17,7 @@ namespace kb21
             
 
         }
-        public bool Add(MyCtrl ctrl,MyArg arg)
+        public bool Add(KbCtrl ctrl,MyArg arg)
         {            
             Children.Add((UIElement)ctrl);
             return false;
