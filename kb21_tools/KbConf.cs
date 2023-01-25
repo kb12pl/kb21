@@ -20,6 +20,7 @@ namespace kb21_tools
             dict["B12_Integretion_Object"] = "B12_Integretion_Object";
             dict["secret_config_file"] = "c:/repo/config.txt";
             dict["prefix_file_script"] = "c:/repo/kb21/kb21/lua/";
+            dict["prefix_file_script"] = "c:/repo/kb21/kb21/lua/";
             dict["frame_init_script"] = "kb.sys_boot()";
             dict["new_window_init_script"] = "win:on_boot()";
             dict["window_on_load_event"] = "on_load";
