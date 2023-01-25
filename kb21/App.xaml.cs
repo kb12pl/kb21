@@ -16,5 +16,6 @@ namespace kb21
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

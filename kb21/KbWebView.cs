@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using kb21;
-using static kb21_tools.KbLog;
-using Microsoft.Web.WebView2;
 using Microsoft.Web.WebView2.Wpf;
 using static System.Net.Mime.MediaTypeNames;
-using System.Threading;
+
 
 namespace kb21
 {
@@ -20,9 +15,6 @@ namespace kb21
         {
             id = arg.Get("id");
             win = _win;
-                        
-            
-
         }
 
         public bool Cmd(MyArg arg)

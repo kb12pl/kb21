@@ -5,9 +5,11 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21", "kb21\kb21.csproj", "{6328B611-A662-4FF8-8993-8C250F8A9C1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kb21_console", "kb21_console\kb21_console.csproj", "{1324D238-39FD-4D8C-A88F-7656EAF07B89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_console", "kb21_console\kb21_console.csproj", "{1324D238-39FD-4D8C-A88F-7656EAF07B89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kb21_tools", "kb21_tools\kb21_tools.csproj", "{C26EDDA4-F9FA-4C2F-800F-E438BE43601F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_tools", "kb21_tools\kb21_tools.csproj", "{C26EDDA4-F9FA-4C2F-800F-E438BE43601F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kb21_web", "kb21_web\kb21_web.csproj", "{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C26EDDA4-F9FA-4C2F-800F-E438BE43601F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C26EDDA4-F9FA-4C2F-800F-E438BE43601F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C26EDDA4-F9FA-4C2F-800F-E438BE43601F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
