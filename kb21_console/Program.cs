@@ -1,6 +1,6 @@
 ﻿global using static kb21_tools.KbLog;
 using kb21_tools;
-
+using System.Runtime.InteropServices;
 
 
 
@@ -9,6 +9,9 @@ LogInit(Console.WriteLine);
 var myInt= new MyProgramIntegration();
 int k = 0;
 var lua = new KbLua(myInt,"initProgram");
+
+ok(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
+
 while (true)
 {    
 
