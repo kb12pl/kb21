@@ -15,7 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddTransient<TestObject>();
+//
+builder.Services.AddSingleton<ITestObject,TestObject>();
 
 
 var app = builder.Build();

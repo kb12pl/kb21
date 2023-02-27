@@ -9,23 +9,24 @@ namespace kb21_web.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly TestObject testObject;
-        public ValuesController( ) 
+        private readonly ITestObject _testObject;
+        public ValuesController(ITestObject testObject) 
         { 
-            //testObject= @object;
+            _testObject=testObject;
         }
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            _testObject.Write("123");
+            return new string[] { "value1", "value2", _testObject.Name };
         }
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return testObject.Get();
+            return "";
         }
 
         // POST api/<ValuesController>
