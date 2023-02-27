@@ -6,18 +6,17 @@ using System.Runtime.InteropServices;
 
 
 LogInit(Console.WriteLine);
-var myInt= new MyProgramIntegration();
+var myInt = new MyProgramIntegration();
 int k = 0;
-var lua = new KbLua(myInt,"initProgram");
+var lua = new KbLua(myInt, "initProgram");
 
 ok(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
 while (true)
-{    
-
-    ok("Step",k);
+{
+    ok("Step", k);
     k++;
-    lua.DoScript("program");    
+    lua.DoScript("program");
     await Task.Delay(3000);
 
 }

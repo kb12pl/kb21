@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_console", "kb21_consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_tools", "kb21_tools\kb21_tools.csproj", "{C26EDDA4-F9FA-4C2F-800F-E438BE43601F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kb21_web", "kb21_web\kb21_web.csproj", "{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_web", "kb21_web\kb21_web.csproj", "{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

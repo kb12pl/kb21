@@ -10,9 +10,9 @@ namespace kb21_web.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly TestObject testObject;
-        public ValuesController(TestObject @object) 
+        public ValuesController( ) 
         { 
-            testObject= @object;
+            //testObject= @object;
         }
         // GET: api/<ValuesController>
         [HttpGet]

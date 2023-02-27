@@ -11,9 +11,11 @@ namespace kb21_tools
 {    
     public class Serial
     {
-        
-        public Serial()
+
+        KbLog _log;
+        public Serial(KbLog log)
         {            
+            _log = log;       
         }
         public string Read()
         {

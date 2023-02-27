@@ -1,4 +1,10 @@
 using kb21_web.Servicec;
+using Microsoft.AspNetCore.Http.HttpResults;
+using static kb21_tools.KbLog;
+
+LogInit(Console.WriteLine);
+
+ok(123);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<TestObject>();
+//builder.Services.AddTransient<TestObject>();
 
 
 var app = builder.Build();
@@ -28,3 +34,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
