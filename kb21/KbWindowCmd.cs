@@ -56,9 +56,9 @@ namespace kb21
 
             if (arg.Is("serial_read"))
             {
-                Serial s=new();
-                string r=s.Read();
-                return arg.Set("text",r);
+                //Serial s=new();
+                //string r=s.Read();
+                //return arg.Set("text",r);
                 
             }
 

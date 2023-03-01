@@ -1,10 +1,12 @@
+using kb21_web.Data;
 using kb21_web.Servicec;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+
 using static kb21_tools.KbLog;
 
 LogInit(Console.WriteLine);
 
-ok(123);
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +16,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<PgSqlContext>(options => options
+            .UseNpgsql(@"Host=localhost;Username=aa;Password=aa;Database=aa")
+            .UseSnakeCaseNamingConvention());
 
-//
-builder.Services.AddSingleton<ITestObject,TestObject>();
+//builder.Services.AddSingleton<BlogContext>();
+//builder.Services.AddSingleton<ITestObject,TestObject>();
 
 
 var app = builder.Build();
