@@ -1,15 +1,5 @@
 {
   "profiles": {
-    "100.103": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": true,
-      "applicationUrl": "http://192.168.100.103:1219"
-    },
     "http": {
       "commandName": "Project",
       "launchBrowser": true,
@@ -47,6 +37,16 @@
         "ASPNETCORE_URLS": "http://localhost:5271"
       },
       "distributionName": ""
+    },
+    "100.2": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://192.168.100.2:1219"
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",

@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace kb21_web.Models
+﻿namespace kb21_web.Models
 {
-    public class ToDo
+    public class Todo
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -10,9 +8,4 @@ namespace kb21_web.Models
         
     }
 
-    public class ToDoContext:DbContext
-    {
-        DbSet<ToDo> ToDo { get; set; }
-        public ToDoContext(DbContextOptions<ToDoContext> options) : base(options) {}
-    }
 }

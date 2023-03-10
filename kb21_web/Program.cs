@@ -1,5 +1,6 @@
 using kb21_web.Data;
-using kb21_web.Servicec;
+using kb21_web.Interfaces;
+using kb21_web.Services;
 using Microsoft.EntityFrameworkCore;
 
 using static kb21_tools.KbLog;
@@ -16,12 +17,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<PgSqlContext>(options => options
-            .UseNpgsql(@"Host=localhost;Username=aa;Password=aa;Database=aa")
-            .UseSnakeCaseNamingConvention());
+//builder.Services.AddDbContext<DataContext>(options => options
+    //.UseNpgsql(@"Host=localhost;Username=aa;Password=aa;Database=aa")
+    //.UseSnakeCaseNamingConvention());
+
+builder.Services.AddDbContext<DataContext>(options => options
+        .UseSqlite(@"Data Source=sqlite.db")
+        .UseSnakeCaseNamingConvention());
 
 //builder.Services.AddSingleton<BlogContext>();
 //builder.Services.AddSingleton<ITestObject,TestObject>();
+
+builder.Services.AddTransient<ITodoInterface,TodoService>();
 
 
 var app = builder.Build();

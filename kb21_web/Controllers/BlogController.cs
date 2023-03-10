@@ -1,4 +1,5 @@
 ﻿using kb21_web.Models;
+using kb21_web.Data;
 using kb21_web.Servicec;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
@@ -11,21 +12,21 @@ namespace kb21_web.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        private readonly BlogContext _blogContext;
-        public BlogController(BlogContext blogContext) 
+        private readonly DataContext dc;
+        public BlogController(DataContext dc) 
         { 
-            _blogContext=blogContext;
+            this.dc = dc;
         }        
-        [HttpGet]
-        
+
+        [HttpGet]        
         //public IEnumerable<string> Get()
         public ActionResult<List<Post>> Get()
         {
             Console.WriteLine(Guid.NewGuid());            
-            _blogContext.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });            
-            _blogContext.SaveChanges();
+            dc.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });            
+            dc.SaveChanges();
 
-            var itemLst = _blogContext.Posts.ToList();
+            var itemLst = dc.Posts.ToList();
             return new List<Post>(itemLst);
             
             //return new string[] { "value1", "value2"};

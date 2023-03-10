@@ -1,4 +1,5 @@
-﻿using kb21_web.Models;
+﻿using kb21_web.Data;
+using kb21_web.Models;
 
 namespace kb21_web.Servicec
 {
@@ -10,8 +11,8 @@ namespace kb21_web.Servicec
 
     public class TestObject:ITestObject
     {
-        BlogContext db;
-        public TestObject(BlogContext _db) 
+        DataContext db;
+        public TestObject(DataContext _db) 
         {
             db = _db;            
             db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
