@@ -1,0 +1,61 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>E439935D-B2A2-46AE-856D-2AA408428F33</ProjectGuid>
+    <!--fd76d07f-69af-401f-ad71-a4f655346c55-->
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>kb21_lua</Name>
+    <RootNamespace>kb21_lua</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="get_list.lua" />
+    <Compile Include="get_text.lua" />
+    <Compile Include="get_text_empty_stop.lua" />
+    <Compile Include="indeksy_a.lua" />
+    <Compile Include="indeksy_wybierz.lua" />
+    <Compile Include="indeksy_w_dodaj.lua" />
+    <Compile Include="kb21_console.lua" />
+    <Compile Include="sql.lua" />
+    <Compile Include="sql_create_database.lua" />
+    <Compile Include="sql_tab.lua" />
+    <Compile Include="sql_tabn.lua" />
+    <Compile Include="sys_boot.lua" />
+    <Compile Include="sys_code.lua" />
+    <Compile Include="sys_console.lua" />
+    <Compile Include="sys_ctrl.lua" />
+    <Compile Include="sys_dialog.lua" />
+    <Compile Include="sys_get.lua" />
+    <Compile Include="sys_global.lua" />
+    <Compile Include="sys_help.lua" />
+    <Compile Include="sys_list.lua" />
+    <Compile Include="sys_log.lua" />
+    <Compile Include="sys_logi.lua" />
+    <Compile Include="sys_page.lua" />
+    <Compile Include="sys_query.lua" />
+    <Compile Include="sys_scripts.lua" />
+    <Compile Include="sys_scripts_list.lua" />
+    <Compile Include="sys_testy.lua" />
+    <Compile Include="sys_window.lua" />
+    <Compile Include="tech_a.lua" />
+    <Compile Include="tech_e.lua" />
+    <Compile Include="web.lua" />
+    <Compile Include="web_google.lua" />
+    <Compile Include="web_lua.lua" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
