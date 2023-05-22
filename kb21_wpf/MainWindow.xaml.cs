@@ -1,28 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿global using kb21_tools;
+global using static kb21_tools.KbConf;
+global using static kb21_tools.KbLog;
+
+
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace kb21_wpf
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly KbWindow win;
+        static TabControl staticTabControl;
+        static public void ok(object o) => System.Windows.MessageBox.Show(o.ToString());
+
         public MainWindow()
         {
             InitializeComponent();
+            LogInit(ok, null);
+            win = new(this);
+            Loaded += MyLoaded;
+        }
+
+        private void MyLoaded(object sender, RoutedEventArgs e)
+        {
+            staticTabControl = myTabCtrl;
+
+            win.lua.DoString(Conf("frame_init_script"));
+        }
+
+
+
+        internal static bool NewPage(KbTabItem page)
+        {
+            staticTabControl.Items.Add(page);
+            staticTabControl.SelectedItem = page;
+            page.Focus();
+            return false;
+        }
+
+        internal static bool Remove(KbTabItem page)
+        {
+            staticTabControl.Items.Remove(page);
+            // staticTabControl.Focus();
+            return false;
         }
     }
 }
