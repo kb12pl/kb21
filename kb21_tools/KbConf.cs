@@ -34,7 +34,7 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             }
             else
             {
-                dict["prefix_file_script"] = "../kb12_tools/lua/";
+                dict["prefix_file_script"] = "../kb21_tools/lua/";
                 dict["secret_config_file"] = "../../config.txt";
             }
 
