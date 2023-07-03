@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using static kb21_tools.KbLog;
 
 namespace kb21_tools
 {
@@ -14,32 +15,26 @@ namespace kb21_tools
         static bool isLoad = false;        
         static Dictionary<string, string> dictSecret = new();
         public static readonly Dictionary<string, object> globals = new();
-        static readonly Dictionary<string, string> dict = new();
+        static readonly Dictionary<string, string> dict = new();        
+        public static readonly string lua_start= @"
+function ok(kom)    
+    B12_Integretion_Object:ok(tostring(kom));
+end
+dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')";
         static KbConf()
         {
             dict["test"] = "123";
             dict["B12_Integretion_Object"] = "B12_Integretion_Object";
             dict["secret_config_file"] = "c:/repo/config.txt";
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                dict["prefix_file_script"] = "c:/repo/kb21/kb21_lua/";
+            
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                dict["prefix_file_script"] = "c:/repo/kb21/kb21_tools/lua/";                
             else
                 dict["prefix_file_script"] = "../kb21_lua/";
             
             dict["frame_init_script"] = "kb.sys_boot()";
             dict["new_window_init_script"] = "win:on_boot()";
             dict["window_on_load_event"] = "on_load";
-
-            dict["initKb21"] = @"
-function ok(kom)    
-    B12_Integretion_Object:Ok(tostring(kom));
-end
-dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
-";
-            dict["initProgram"] = @"
-function ok(kom)
-    B12_Integretion_Object:Ok(tostring(kom));
-end
-";
         }
         public static string Secret(string key)
         {
@@ -53,7 +48,7 @@ end
             if (dict.TryGetValue(key, out string? obj))
             {
                 return obj;   
-            }
+            }            
             return String.Empty;
         }
 #pragma warning restore IDE1006 // Naming Styles

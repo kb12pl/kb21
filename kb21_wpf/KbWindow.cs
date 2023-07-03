@@ -1,14 +1,12 @@
-﻿using System;
+﻿using NLua;
+using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using NLua;
-
 
 namespace kb21_wpf
 {
-    public partial class KbWindow
+    public partial class KbWindow:IKbWindow
     {
         public readonly KbLua lua;        
         static readonly Dictionary<string, KbDialog> dialog_list = new();
@@ -20,18 +18,18 @@ namespace kb21_wpf
         //public static void KbWindowOkClear() => xlogclear();
         internal KbWindow(KbDialog _dialog, MyArg arg)
         {
-            lua = new(this, "initKb21");
+            lua = new(this);
             contentControl = _dialog;
             dialog = true;            
         }
         public KbWindow(Window _frame)
         {
-            lua = new(this, "initKb21");
+            lua = new(this);
             contentControl = _frame;            
         }
         internal KbWindow(KbTabItem _page)
         {
-            lua = new(this, "initKb21");
+            lua = new(this);
             contentControl = _page;
             page = true;            
         }
@@ -79,7 +77,7 @@ namespace kb21_wpf
                 }
                 if (page)
                 {
-                    //MyFrame.Remove((KbTabItem)contentControl);
+                    MyFrame.Remove((KbTabItem)contentControl);
                     
                 }
                 

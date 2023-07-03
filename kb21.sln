@@ -3,54 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21", "kb21\kb21.csproj", "{6328B611-A662-4FF8-8993-8C250F8A9C1C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_console", "kb21_console\kb21_console.csproj", "{1324D238-39FD-4D8C-A88F-7656EAF07B89}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_tools", "kb21_tools\kb21_tools.csproj", "{C26EDDA4-F9FA-4C2F-800F-E438BE43601F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_web", "kb21_web\kb21_web.csproj", "{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}"
 EndProject
-Project("{5697748A-77EF-44CA-8824-4F5637E5945B}") = "kb21_lua", "kb21_lua\kb21_lua.luaproj", "{E439935D-B2A2-46AE-856D-2AA408428F33}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kb21_wpf", "kb21_wpf\kb21_wpf.csproj", "{D383CA14-4B1E-42F2-9B57-AD571576DB2E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{57A1115A-F200-4227-849C-AA8AC56CE8E3}"
-	ProjectSection(SolutionItems) = preProject
-		kb21_lua\get_list.lua = kb21_lua\get_list.lua
-		kb21_lua\get_text.lua = kb21_lua\get_text.lua
-		kb21_lua\get_text_empty_stop.lua = kb21_lua\get_text_empty_stop.lua
-		kb21_lua\indeksy_a.lua = kb21_lua\indeksy_a.lua
-		kb21_lua\indeksy_wybierz.lua = kb21_lua\indeksy_wybierz.lua
-		kb21_lua\indeksy_w_dodaj.lua = kb21_lua\indeksy_w_dodaj.lua
-		kb21_lua\kb21_console.lua = kb21_lua\kb21_console.lua
-		kb21_lua\sql.lua = kb21_lua\sql.lua
-		kb21_lua\sql_create_database.lua = kb21_lua\sql_create_database.lua
-		kb21_lua\sql_tab.lua = kb21_lua\sql_tab.lua
-		kb21_lua\sql_tabn.lua = kb21_lua\sql_tabn.lua
-		kb21_lua\sys_boot.lua = kb21_lua\sys_boot.lua
-		kb21_lua\sys_code.lua = kb21_lua\sys_code.lua
-		kb21_lua\sys_console.lua = kb21_lua\sys_console.lua
-		kb21_lua\sys_ctrl.lua = kb21_lua\sys_ctrl.lua
-		kb21_lua\sys_dialog.lua = kb21_lua\sys_dialog.lua
-		kb21_lua\sys_get.lua = kb21_lua\sys_get.lua
-		kb21_lua\sys_global.lua = kb21_lua\sys_global.lua
-		kb21_lua\sys_help.lua = kb21_lua\sys_help.lua
-		kb21_lua\sys_list.lua = kb21_lua\sys_list.lua
-		kb21_lua\sys_log.lua = kb21_lua\sys_log.lua
-		kb21_lua\sys_logi.lua = kb21_lua\sys_logi.lua
-		kb21_lua\sys_page.lua = kb21_lua\sys_page.lua
-		kb21_lua\sys_query.lua = kb21_lua\sys_query.lua
-		kb21_lua\sys_scripts.lua = kb21_lua\sys_scripts.lua
-		kb21_lua\sys_scripts_list.lua = kb21_lua\sys_scripts_list.lua
-		kb21_lua\sys_testy.lua = kb21_lua\sys_testy.lua
-		kb21_lua\sys_window.lua = kb21_lua\sys_window.lua
-		kb21_lua\tech_a.lua = kb21_lua\tech_a.lua
-		kb21_lua\tech_e.lua = kb21_lua\tech_e.lua
-		kb21_lua\web.lua = kb21_lua\web.lua
-		kb21_lua\web_google.lua = kb21_lua\web_google.lua
-		kb21_lua\web_lua.lua = kb21_lua\web_lua.lua
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6328B611-A662-4FF8-8993-8C250F8A9C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6328B611-A662-4FF8-8993-8C250F8A9C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6328B611-A662-4FF8-8993-8C250F8A9C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6328B611-A662-4FF8-8993-8C250F8A9C1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1324D238-39FD-4D8C-A88F-7656EAF07B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1324D238-39FD-4D8C-A88F-7656EAF07B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1324D238-39FD-4D8C-A88F-7656EAF07B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -74,8 +29,6 @@ Global
 		{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32DCBF87-D271-4F91-BBEC-37EFFC4DAB97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E439935D-B2A2-46AE-856D-2AA408428F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E439935D-B2A2-46AE-856D-2AA408428F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D383CA14-4B1E-42F2-9B57-AD571576DB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D383CA14-4B1E-42F2-9B57-AD571576DB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D383CA14-4B1E-42F2-9B57-AD571576DB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -7,21 +7,16 @@ namespace kb21_tools
 {
     public class KbDeepL
     {
-        private static string url = "https://api-free.deepl.com/v2/translate";
+        //private static string url = "https://api-free.deepl.com/v2/translate";
         private static string apiKey = Secret("deepl.key");        
-        private static HttpClient client;
+        //private static HttpClient client;
 
         public KbDeepL()
         {
 
 
         }
-        
-        public async Task<int> Test()
-        {
-            ok(123);
-            return 2;
-        }
+              
         
         public async Task<int> Trans()
         {

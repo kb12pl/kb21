@@ -19,7 +19,7 @@ namespace kb21_tools
         }
         public static void ok(object mess, object mess2)
         {
-            string m1 = mess.ToString();
+            string m1 = mess?.ToString();
             string m2 = mess2.ToString();
             ok($"( {m1} )  ( {m2} )");
         }

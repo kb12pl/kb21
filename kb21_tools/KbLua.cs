@@ -8,12 +8,12 @@ namespace kb21_tools
     public class KbLua
     {
         private readonly NLua.Lua lua = new();
-        public KbLua(object o,string init)
+        public KbLua(IKbWindow o)
         {
             lua.LoadCLRPackage();
             lua.State.Encoding = Encoding.UTF8;
             lua["B12_Integretion_Object"] = o;
-            DoString(KbConf.Conf(init));
+            DoString(KbConf.lua_start);
         }
 
         public NLua.Lua GetPtr() => lua;               

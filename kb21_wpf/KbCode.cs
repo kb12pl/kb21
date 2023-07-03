@@ -33,7 +33,7 @@ namespace kb21_wpf
             // Load our custom highlighting definition
             IHighlightingDefinition customHighlighting;
             ColorizeSearchResultsBackgroundRenderer searchColorizor = new();
-            using (Stream s = typeof(MainWindow).Assembly.GetManifestResourceStream("kb21.KbCodeLua.xshd"))
+            using (Stream s = typeof(MainWindow).Assembly.GetManifestResourceStream("kb21_wpf.KbCodeLua.xshd"))
             {
                 if (s == null)
                     ok("Could not find embedded resource");
