@@ -25,13 +25,19 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
         {
             dict["test"] = "123";
             dict["B12_Integretion_Object"] = "B12_Integretion_Object";
-            dict["secret_config_file"] = "c:/repo/config.txt";
-            
+            dict["secret_config_file"] = "c:/repo1/config.txt";
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                dict["prefix_file_script"] = "c:/repo/kb21/kb21_tools/lua/";                
+            {
+                dict["prefix_file_script"] = "c:/repo/kb21/kb21_tools/lua/";
+                dict["secret_config_file"] = "c:/repo/config.txt";
+            }
             else
+            {
                 dict["prefix_file_script"] = "../kb21_lua/";
-            
+                dict["secret_config_file"] = "../../config.txt";
+            }
+
             dict["frame_init_script"] = "kb.sys_boot()";
             dict["new_window_init_script"] = "win:on_boot()";
             dict["window_on_load_event"] = "on_load";
@@ -42,7 +48,7 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             return dictSecret[key];
             
         }
-#pragma warning disable IDE1006 // Naming Styles
+
         public static string Conf(string key)
         {            
             if (dict.TryGetValue(key, out string? obj))
@@ -51,7 +57,6 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             }            
             return String.Empty;
         }
-#pragma warning restore IDE1006 // Naming Styles
 
         public static string GetScript(string script)
         {
@@ -62,11 +67,17 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
         {
             if (isLoad)
                 return;
-
-            Dictionary<string, string>? tmp;
-            tmp= JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Conf("secret_config_file")));
-            if (tmp is not null)
-                dictSecret = tmp;
+            try
+            {
+                Dictionary<string, string>? tmp;
+                tmp = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Conf("secret_config_file")));
+                if (tmp is not null)
+                    dictSecret = tmp;
+            }
+            catch(Exception e)
+            {
+                ok("error in load secret: " + e.Message);
+            }
             isLoad = true;
         }
         public static void SetGlobal(string key, object b)

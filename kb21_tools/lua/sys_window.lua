@@ -203,7 +203,9 @@ function win:sql(query,ret_error)
       if not query or query=='' then
       		self:error("query is empty")
       	end
+	
 	local ret=self.ptr:Sql({query=query})
+	
 	if ret.isError then
 		if ret_error then		
 			return nil,nil,ret.error
