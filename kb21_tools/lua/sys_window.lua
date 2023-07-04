@@ -35,6 +35,11 @@ function sf(tresc,...)
     return wyn
 end
 
+function sr(...)
+	return ...
+end
+
+
 
 function osf(...)
 	local tmp=sf(...)

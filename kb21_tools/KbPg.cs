@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using Dapper;
+using System.Xml;
 
 
 namespace kb21_tools
@@ -51,13 +52,7 @@ namespace kb21_tools
             conn.Close();
         }
         
-        public static void Execute(string query)
-        {
-            using var conn = new NpgsqlConnection(connString);
-            conn.Open();
-            conn.Execute(query);
-            conn.Close();
-        }
+       
 
         static public async Task<Ret> SelectAsync(MyArg arg)
         {
@@ -87,6 +82,26 @@ namespace kb21_tools
             conn.Close();
             return ret;
         }
+
+        static public Ret Execute(string query)
+        {
+            Ret ret = new();
+            try
+            {
+                using var conn = new NpgsqlConnection(connString);
+                conn.Open();
+                conn.Execute(query);
+                conn.Close();
+            }
+            catch (NpgsqlException ex)
+            {
+                ret.SetError(ex.Message);
+                return ret;
+            }
+
+            return ret;
+        }
+
         static public Ret Select(MyArg arg)
         {
             Ret ret = new();
@@ -110,7 +125,10 @@ namespace kb21_tools
                     }
 
                     for (int i = 0; i < reader.FieldCount; i++)
-                        ret.Set(row, i, reader.GetString(i));
+                        if (reader.IsDBNull(i))
+                            ret.Set(row, i, "");
+                        else
+                            ret.Set(row, i, reader.GetString(i));
                     row++;
                 }
                 ret.SetRows(row);
