@@ -23,6 +23,7 @@ namespace kb21_tools
             string m2 = mess2.ToString();
             ok($"( {m1} )  ( {m2} )");
         }
+        public static void xlog(object o)=>ok(o);
 
 #pragma warning restore IDE1006 // Naming Styles
     }

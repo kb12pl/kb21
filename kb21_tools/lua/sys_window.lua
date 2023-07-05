@@ -20,16 +20,25 @@ end
 
 function sf(tresc,...) 
     local par={...}
-    local wyn=string.gsub(tresc, "([@#])(%d+)", 
-    function(zna,zmn) 
+    local wyn=string.gsub(tresc, "([@#])(%^*)(%d+)", 	
+    function(zna,nn,zmn)		  
       zmn=tonumber(zmn)      
       zmn=par[zmn] or ''
-
       if zna=='#' then
         zmn=string.gsub(zmn,"'","''")
-        return "'"..zmn.."'"
+        if zmn=='' and nn=='^' then
+			return 'null'
+		else
+			return "'"..zmn.."'"
+		end
       end
-      return zmn  
+	  
+		
+      if zmn==''and nn=='^' then
+		return 'null'
+	  else
+		return zmn  
+	  end
     end
     )
     return wyn
@@ -48,6 +57,9 @@ function osf(...)
 end
 
 
+function win:SetConfig(key,val)		
+	win.ptr:SetConfig(tostring(key),tostring(val))
+end
 
 function win:stop()
 	error('stop',0)

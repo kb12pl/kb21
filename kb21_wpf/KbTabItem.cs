@@ -16,7 +16,7 @@ namespace kb21_wpf
 
         private void MyLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            win.Integration(Conf("window_on_load_event"));            
+            win.Integration(Get("window_on_load_event"));            
         }
 
     }

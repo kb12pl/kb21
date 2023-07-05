@@ -35,7 +35,7 @@ namespace kb21_wpf
         }
 
         public void Ok(object mess)=>ok(mess);       
-        public string GetConfig(string key)=>Conf(key);
+        public string GetConfig(string key)=>Get(key);
         public void SetGlobal(string key, object b) => KbConf.SetGlobal(key, b);
         public object? GetGlobal(string key)=>KbConf.GetGlobal(key);
 
@@ -113,7 +113,7 @@ namespace kb21_wpf
             {
                 var page = new KbTabItem(arg);
                 KbLua.CopyTable("B12_Integretion_arg", tab, page.win.lua);
-                ret = page.win.lua.DoString(Conf("new_window_init_script"));
+                ret = page.win.lua.DoString(Get("new_window_init_script"));
                 if (ret != "")
                     return arg.Error(ret);
 
@@ -130,7 +130,7 @@ namespace kb21_wpf
             KbLua.CopyTable("B12_Integretion_arg", tab, dialog.win.lua);
             dialog.Owner = App.Current.MainWindow;
             
-            ret = dialog.win.lua.DoString(Conf("new_window_init_script"));
+            ret = dialog.win.lua.DoString(Get("new_window_init_script"));
             
             if (ret != "")
             {

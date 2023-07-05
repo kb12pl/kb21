@@ -1,4 +1,13 @@
-﻿fgt={}
+﻿win:SetConfig("console_loop_time",240000)
+curarg={user='console'}
+xlogd=ok
+
+fgt={}
+
+function fgt.gt_wersja_systemu()
+    return 0
+end
+
 function fgt.SystemGetSkrypt(script)  
   local tab=win:sql("select zdarzenie_tr from bbzdarzenia where zdarzenie_sb='" .. script .. "'")    
   return tab[1][1]
@@ -37,7 +46,15 @@ function fgt.sqlTable(query)
     local tab=win:sql(query)    
     return tab
 end
-xlogd=ok
+
+function fgt.sqlList(query)
+    local tab=win:sql(query)    
+    local list={}
+    for k,v in pairs(tab) do
+       table.insert(list,v[1]) 
+    end
+    return list
+end
 
 function gt2.SystemProtectedModeIsError(a,b,...)  
   if a then
@@ -61,6 +78,23 @@ function gt2.SystemProtectedMode(f,...)
   return gt2.SystemProtectedModeIsError(xpcall(f,gt2.SystemProtectedModeError,...))
 end
 
+function sys_x_position(x)        
+  local p=''
+  for k=(x or 2),10 do
+    local t=debug.getinfo(k)        
+    if t and t.name then                              
+      p=' -> '..(t.name or '')..'() '..t.currentline..''..p
+    else      
+      break
+    end    
+    k=k+1
+  end     
+  return p
+end
+function xlogd(...)
+    xlog('\n"xlogd" '..sys_x_position(3))
+    xlog(...)      
+end
 
 fgt.SystemProtectedMode(fgt.SystemZdarzenieFunkcjaFrameTimeServer,true)
 

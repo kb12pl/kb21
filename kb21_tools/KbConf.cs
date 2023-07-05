@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Npgsql.Replication;
 using static kb21_tools.KbLog;
 
 namespace kb21_tools
@@ -49,7 +50,7 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             
         }
 
-        public static string Conf(string key)
+        public static string Get(string key)
         {            
             if (dict.TryGetValue(key, out string? obj))
             {
@@ -57,10 +58,29 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             }            
             return String.Empty;
         }
+        public static void Set(string key, string val)
+        {            
+            dict[key] = val;
+        }
+
+        public static int GetInt(string key, int def)
+        {            
+            if (Int32.TryParse(Get(key), out int j))
+            {
+                return j;
+            }
+            else
+            {
+                key ??= "key is null";
+                xlog("error KbConf.GetInt:" + key);
+                return def;
+            }            
+        }
+
 
         public static string GetScript(string script)
         {
-            return File.ReadAllText(Conf("prefix_file_script") + script + ".lua");
+            return File.ReadAllText(Get("prefix_file_script") + script + ".lua");
         }
 
         static void Load()
@@ -70,7 +90,7 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             try
             {
                 Dictionary<string, string>? tmp;
-                tmp = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Conf("secret_config_file")));
+                tmp = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Get("secret_config_file")));
                 if (tmp is not null)
                     dictSecret = tmp;
             }

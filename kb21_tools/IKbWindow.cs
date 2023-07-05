@@ -10,5 +10,6 @@ namespace kb21_tools
     {
         void ok(object mess);
         string GetConfig(string key);
+        void SetConfig(string key,string val);
     }
 }

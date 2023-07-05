@@ -27,7 +27,7 @@ namespace kb21_wpf
         {
             staticTabControl = myTabCtrl;
 
-            win.lua.DoString(Conf("frame_init_script"));
+            win.lua.DoString(Get("frame_init_script"));
         }
 
 
