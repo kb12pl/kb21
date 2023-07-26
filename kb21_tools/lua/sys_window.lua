@@ -5,6 +5,7 @@ win={ptr=B12_Integretion_Object, shortList={}, debug_tools={},short_number=0,eve
 win.is_debug=true
 win.debug_tools['sys_query']='sys_query'
 
+
 function win:reloadKb()
 	kb=setmetatable({},{__index=function(t,k)  return win:loadScript(k) end})
 end
@@ -303,40 +304,7 @@ function xlogclear()
 end
 
 
-function B12_Integretion_Function(event,id,par_1,par_2)    
-	if win.event_lock then
-		return
-	end
-	
-    if id=="" then            
-        if win[event] then          	
-            win:pcall(win[event],win,par_1,par_2)                            
-        end        
-        return
-    else    
-        
-        local control=ctrl[id]
-        if not control then	
-            return
-        end          
-        
-        local fun,key,arg
-        
-        if control.isGrid then        
-            fun=control[control.cols[par_1]]            
-            key=tonumber(par_2) and control.keys[tonumber(par_2)]        
-        elseif control.is_text then                        
-            key=par_1            
-            fun=control.event           
-        else
-            fun=control.event           
-        end
-        
-        if fun then             
-            win:pcall(fun,control,key)    
-        end            
-    end
-end
+
 
 
 
@@ -418,7 +386,6 @@ end
 
 
 function win:onShort(key)       
-
      self:doString('win:on_short - '..(key or "error short key"),self.shortList[key])         
 end
 
@@ -462,3 +429,36 @@ function win:on_tools()
 	end
 end
 
+function B12_Integretion_Function(event,id,par_1,par_2)    	     	
+	if win.event_lock then
+		return
+	end	
+    if id=="" then  		
+        if win[event] then          	
+            win:pcall(win[event],win,par_1,par_2)                            
+        end        
+        return
+    else    
+        
+        local control=ctrl[id]
+        if not control then	
+            return
+        end          
+        
+        local fun,key,arg
+        
+        if control.isGrid then        
+            fun=control[control.cols[par_1]]            
+            key=tonumber(par_2) and control.keys[tonumber(par_2)]        
+        elseif control.is_text then                        
+            key=par_1            
+            fun=control.event           
+        else
+            fun=control.event           
+        end
+        
+        if fun then             
+            win:pcall(fun,control,key)    
+        end            
+    end
+end

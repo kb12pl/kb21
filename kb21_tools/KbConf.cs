@@ -13,14 +13,16 @@ namespace kb21_tools
 {
     public class KbConf
     {        
-        static bool isLoad = false;        
+        static bool isLoad = false;
+        static Dictionary<string, string> dict = new();
         static Dictionary<string, string> dictSecret = new();
-        public static readonly Dictionary<string, object> globals = new();
-        static readonly Dictionary<string, string> dict = new();        
+        static Dictionary<string, object> globals = new();
+        
         public static readonly string lua_start= @"
-function ok(kom)    
+function ok(kom)           
     B12_Integretion_Object:ok(tostring(kom));
 end
+
 dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')";
         static KbConf()
         {
@@ -43,7 +45,7 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             dict["new_window_init_script"] = "win:on_boot()";
             dict["window_on_load_event"] = "on_load";
         }
-        public static string Secret(string key)
+        public static string GetSecret(string key)
         {
             Load();
             return dictSecret[key];

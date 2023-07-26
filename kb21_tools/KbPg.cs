@@ -12,10 +12,10 @@ namespace kb21_tools
           
         static KbPg()
         {
-            connString += "Host=" + KbConf.Secret("pg.host") + ";";
-            connString += "Database=" + KbConf.Secret("pg.database") + ";";
-            connString+= "Username="+KbConf.Secret("pg.user")+";";
-            connString+= "Password="+KbConf.Secret("pg.pass")+";";            
+            connString += "Host=" + KbConf.GetSecret("pg.host") + ";";
+            connString += "Database=" + KbConf.GetSecret("pg.database") + ";";
+            connString+= "Username="+KbConf.GetSecret("pg.user")+";";
+            connString+= "Password="+KbConf.GetSecret("pg.pass")+";";            
 
         }
         public static async Task InsertAsync(string query, object[] rows)

@@ -9,9 +9,9 @@ namespace kb21_tools
     {
         private readonly NLua.Lua lua = new();
         public KbLua(IKbWindow o)
-        {
+        {            
             lua.LoadCLRPackage();
-            lua.State.Encoding = Encoding.UTF8;
+            lua.State.Encoding = Encoding.UTF8;            
             lua["B12_Integretion_Object"] = o;
             DoString(KbConf.lua_start);
         }

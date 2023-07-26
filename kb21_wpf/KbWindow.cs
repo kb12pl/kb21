@@ -1,6 +1,7 @@
 ﻿using NLua;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -9,13 +10,10 @@ namespace kb21_wpf
     public partial class KbWindow:IKbWindow
     {
         public readonly KbLua lua;        
-        static readonly Dictionary<string, KbDialog> dialog_list = new();
-        public static readonly Dictionary<string, object> globals = new();
+        static readonly Dictionary<string, KbDialog> dialog_list = new();        
         readonly ContentControl contentControl;
         private readonly bool dialog;
         private readonly bool page;
-        //public static void KbWindowOk(string mes) => ok(mes);
-        //public static void KbWindowOkClear() => xlogclear();
         internal KbWindow(KbDialog _dialog, MyArg arg)
         {
             lua = new(this);
@@ -33,10 +31,10 @@ namespace kb21_wpf
             contentControl = _page;
             page = true;            
         }
+        public void ok(object mess) => KbLog.ok(mess);
+        public string GetConfig(string key) => KbConf.Get(key);
+        public void SetConfig(string key, string val) => KbConf.Set(key, val);
 
-        public void Ok(object mess)=>ok(mess);       
-        public string GetConfig(string key)=>Get(key);
-        public void SetGlobal(string key, object b) => KbConf.SetGlobal(key, b);
         public object? GetGlobal(string key)=>KbConf.GetGlobal(key);
 
         public string? Shortcut(string shortcut, string kod,bool shift=false, bool alt=false,bool ctrl=false )
@@ -77,8 +75,10 @@ namespace kb21_wpf
                 }
                 if (page)
                 {
-                    MyFrame.Remove((KbTabItem)contentControl);
-                    
+                    //MyFrame.Remove((KbTabItem)contentControl);
+                    Window w = (Window)contentControl;
+                    w.Close();
+
                 }
                 
             }

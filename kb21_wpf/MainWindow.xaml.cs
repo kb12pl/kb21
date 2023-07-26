@@ -10,36 +10,26 @@ using System.Windows.Controls;
 namespace kb21_wpf
 {
     public partial class MainWindow : Window
-    {
-        private readonly KbWindow win;
-        static TabControl staticTabControl;
-        static public void ok(object o) => System.Windows.MessageBox.Show(o.ToString());
-
+    {        
+        static TabControl ?staticTabControl;
+        static KbWindow? win;
         public MainWindow()
         {
             InitializeComponent();
-            LogInit(ok, null);
-            win = new(this);
+            LogInit((string s)=>System.Windows.MessageBox.Show(s), null);
+            win=new KbWindow(this);
+            staticTabControl = myTabCtrl;
             Loaded += MyLoaded;
         }
-
-        private void MyLoaded(object sender, RoutedEventArgs e)
-        {
-            staticTabControl = myTabCtrl;
-
-            win.lua.DoString(Get("frame_init_script"));
-        }
-
-
-
+        private void MyLoaded(object sender, RoutedEventArgs e)=>win.lua.DoScript("kb21_frame");
         internal static bool NewPage(KbTabItem page)
-        {
+        {            
+                
             staticTabControl.Items.Add(page);
             staticTabControl.SelectedItem = page;
             page.Focus();
             return false;
         }
-
         internal static bool Remove(KbTabItem page)
         {
             staticTabControl.Items.Remove(page);

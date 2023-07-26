@@ -8,7 +8,7 @@ namespace kb21_tools
     public class KbDeepL
     {
         //private static string url = "https://api-free.deepl.com/v2/translate";
-        private static string apiKey = Secret("deepl.key");        
+        private static string apiKey = GetSecret("deepl.key");        
         //private static HttpClient client;
 
         public KbDeepL()

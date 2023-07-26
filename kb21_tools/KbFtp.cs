@@ -27,7 +27,7 @@ namespace kb21_tools
 
         bool Connect()
         {
-            client = new(Secret("ftp.address"), Secret("ftp.user"), Secret("ftp.pass"));
+            client = new(GetSecret("ftp.address"), GetSecret("ftp.user"), GetSecret("ftp.pass"));
             client.Connect();
             return false;
         }
