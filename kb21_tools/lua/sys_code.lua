@@ -21,7 +21,7 @@ function win:on_load(script)
 end
 
 function win:load_script(script)	
-	self:save_last()	
+	--self:save_last()	
 	current_script=script
 	win.ptr:CmdWin({title=script})
 	ctrl.code:focus()
@@ -35,19 +35,17 @@ function win:load_script(script)
 	end	
 end
 
-function win:save_last()
-	if current_script and current_script~='' then		
-		win:global('globalLastScript',current_script)			
-		win:global('globalLastScript_caret_'..current_script,ctrl.code:get_caret())		
-	end		
-end
+function win:save_last()
+	if current_script and current_script~='' then		
+		self:global('globalLastScript',current_script)			
+		self:global('globalLastScript_caret_'..current_script,ctrl.code:get_caret())		
+	end		
+end
 
-function win:on_close()		
-	win:save_last()
-	win:exit()
-end
-
-
+function win:on_close()		
+	self:save_last()
+	self:exit()
+end
 
 function win:shortF12()
 	local tab={}
@@ -102,13 +100,13 @@ end
 
 function win:shortF1(insert)
 	local s=kb.get_list('',kb.sys_scripts():work_list())
-	if not s then
-		return
+	if not s then
+		return
 	end	
-	if insert then		
-		ctrl.code:cmd({insert=s})
-		return 
-	end		
+	if insert then	
+		ctrl.code:cmd({insert=s})
+		return 
+	end			
 	win:load_script(s)
 end
 

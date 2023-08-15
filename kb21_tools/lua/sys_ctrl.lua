@@ -259,16 +259,13 @@ function ctrl_meta:sql(query)
 end
 
 
-
 function ctrl_meta:add_column(name,key)
-       key=key or name
-       self.ncols=self.ncols+1
+    key=key or name
+    self.ncols=self.ncols+1
 	self.cols[name]=key
 	self.bind=self.bind+1
 	self:cmd({column=name,bind=self.bind})	
 end
-
-
 
 
 function ctrl_meta:find(what,back) 	

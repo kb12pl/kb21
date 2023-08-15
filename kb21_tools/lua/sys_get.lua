@@ -8,6 +8,7 @@ function win:on_create()
 end
 
 function win:on_load()
+	ctrl.text:set(inarg.def)
 	ctrl.text:focus()
 end
 function ctrl.text:event()

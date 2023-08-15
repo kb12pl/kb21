@@ -32,8 +32,8 @@ namespace kb21_wpf
                     error = false;             
             }
             
-            int par;
-            if (dialog && arg.Try("width",out par))
+            
+            if (dialog && arg.Try("width",out int par))
             {
                     Window w = (Window)contentControl;
                     w.Width = par;

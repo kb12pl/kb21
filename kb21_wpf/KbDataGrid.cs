@@ -25,7 +25,7 @@ namespace kb21_wpf
             SelectionUnit = DataGridSelectionUnit.Cell;
             MouseDoubleClick += MyDoubleClick;
             PreviewKeyDown += MyPreviewKeyDown;
-            Background = Brushes.Black;
+            //Background = Brushes.Black;
 
             /*
             Style cellStyle = new Style(typeof(DataGridCell));

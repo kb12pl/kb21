@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="lua\NewFolder\**" />
+    <EmbeddedResource Remove="lua\NewFolder\**" />
+    <None Remove="lua\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="DeepL.net" Version="1.5.0" />
     <PackageReference Include="FluentFTP" Version="44.0.1" />

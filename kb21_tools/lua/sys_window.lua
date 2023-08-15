@@ -79,31 +79,31 @@ end
 function win:close()
     error('close',0)
 end
-function win:on_close()
+function win:on_close()	
     self:close()
 end
 
 
-function win:pcall(fun,...)    
-	local a,b=pcall(fun,...)
+function win:pcall(fun,x,...)    	
+	local a,b=pcall(fun,x,...)			
 	if not a then 		
 		if b=='stop' then	
 			self:stop()		
 		elseif b=='close' then	
-			win:close()		
+			self:close()		
 		end
 		ok(b)
 	end	
 end
 
-function win:doString(name,script)     
+function win:doString(name,script)     	
 	a=self:doLoad(name,script)
 	a()
 end
 
-function win:doLoad(name,script)             
+function win:doLoad(name,script)      
 	local a,b=load(script,name)  
-	if not a then		
+	if not a then			
 		ok(b)
 		self:stop()
 	end
@@ -111,8 +111,8 @@ function win:doLoad(name,script)
 end
 
 function win:loadScript(name)
-
 	local script=self:readScript(name) 
+	
 	if not script or script=='' then	
 		self:error((name or '') .. " : script is empty")
 	end
@@ -145,7 +145,7 @@ function win:readScript(name)
 end
 
 function win:saveScript(name,code)       
-    local file=io.open(KbWindow.GetConfig('prefix_file_script')..name..'.lua','w+')
+    local file=io.open(win.ptr:GetConfig('prefix_file_script')..name..'.lua','w+')
     if not file then    
        win:error("error open file to wrire: "..name)
     end
@@ -220,7 +220,7 @@ end
 function win:sql(query,ret_error)
       if not query or query=='' then
       		self:error("query is empty")
-      	end
+      	end	
 	
 	local ret=self.ptr:Sql({query=query})
 	
@@ -334,7 +334,7 @@ function win:on_boot(reload)
     	win:on_create()
     end        
     
-    self:short("F1",string.format("kb.sys_dialog('sys_code') "),true)    
+    --self:short("F1",string.format("kb.sys_dialog('sys_code') "),true)    
     self:short("F2",string.format("kb.sys_dialog('sys_code',{name='%s'}) ",self.script),true)    
     self:short("F3",string.format("win:reloadKb()   kb['%s']()", self.script),true)    
     self:short('Ctrl+F3',"win:on_boot(true)")     
@@ -349,7 +349,9 @@ function win:on_boot(reload)
 	if self.isPage then
 		self:short("Ctrl+W","win:on_close()" )
 	else
-		self:short("Esc","win:on_close()")
+		--self:short("Esc","win:on_close()")
+		---jakis blad
+		self:short("Esc","  error('close',0)")
 	end      
 
 	if reload and self.on_load then
@@ -358,10 +360,10 @@ function win:on_boot(reload)
     win.event_lock=false
 end
 
-win.short_change={}
-win.short_change['ESC']='Escape'
-win.short_change['ENTER']='Enter'
-win.short_change['1']='D1'
+win.shortChange={}
+win.shortChange['ESC']='Escape'
+win.shortChange['ENTER']='Enter'
+win.shortChange['1']='D1'
 
 
 
@@ -373,7 +375,7 @@ win.short_change['1']='D1'
 	local alt=string.find(key,'ALT') and true or false
 	local kod=string.match(key,'(%w+)$')
 	
-	kod=self.short_change[kod] or kod 
+	kod=self.shortChange[kod] or kod 
     
     
     if boot and self.shortList[key] then
@@ -385,7 +387,7 @@ end
 
 
 
-function win:onShort(key)       
+function win:onShort(key)           
      self:doString('win:on_short - '..(key or "error short key"),self.shortList[key])         
 end
 
@@ -429,13 +431,14 @@ function win:on_tools()
 	end
 end
 
-function B12_Integretion_Function(event,id,par_1,par_2)    	     	
+function B12_Integretion_Function(event,id,par_1,par_2)    
+	--xlog(event,id,par_1,par_2)
 	if win.event_lock then
 		return
 	end	
     if id=="" then  		
-        if win[event] then          	
-            win:pcall(win[event],win,par_1,par_2)                            
+        if win[event] then     
+	        win:pcall(win[event],win,par_1,par_2)                            
         end        
         return
     else    

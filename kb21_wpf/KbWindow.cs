@@ -7,64 +7,50 @@ using System.Windows.Input;
 
 namespace kb21_wpf
 {
-    public partial class KbWindow:IKbWindow
+    public partial class KbWindow : IKbWindow
     {
-        public readonly KbLua lua;        
-        static readonly Dictionary<string, KbDialog> dialog_list = new();        
+        public readonly KbLua lua;
+        static readonly Dictionary<string, KbDialog> dialog_list = new();
+        readonly Dictionary<string, MenuItem> menu_list = new();
         readonly ContentControl contentControl;
-        private readonly bool dialog;
-        private readonly bool page;
+        readonly Menu menubar;
+        readonly bool frame;
+        readonly bool dialog;
+        readonly bool page;
+        
+        
         internal KbWindow(KbDialog _dialog, MyArg arg)
         {
             lua = new(this);
             contentControl = _dialog;
-            dialog = true;            
+            dialog = true;
         }
-        public KbWindow(Window _frame)
+        public KbWindow(Window _frame,Menu _menubar)
         {
             lua = new(this);
-            contentControl = _frame;            
+            contentControl = _frame;
+            menubar = _menubar;                        
+            frame = true;
         }
         internal KbWindow(KbTabItem _page)
         {
             lua = new(this);
             contentControl = _page;
-            page = true;            
+            page = true;
         }
         public void ok(object mess) => KbLog.ok(mess);
         public string GetConfig(string key) => KbConf.Get(key);
         public void SetConfig(string key, string val) => KbConf.Set(key, val);
 
-        public object? GetGlobal(string key)=>KbConf.GetGlobal(key);
+        public object? GetGlobal(string key) => KbConf.GetGlobal(key);
+        public void SetGlobal(string key,string val) => KbConf.SetGlobal(key, val);
 
-        public string? Shortcut(string shortcut, string kod,bool shift=false, bool alt=false,bool ctrl=false )
+
+
+        public void Integration(string event_name, string id = "", string col = "", string item = "", string par = "")
         {
 
-            ModifierKeys mod = 0;
-            if (shift)
-                mod |= ModifierKeys.Shift;
-            if (ctrl)
-                mod |= ModifierKeys.Control;
-            if (alt)
-                mod |= ModifierKeys.Alt;
-
-            
-            RoutedCommand newCmd = new(shortcut, typeof(string));
-            newCmd.InputGestures.Add(new KeyGesture((Key)Enum.Parse(typeof(Key), kod),mod));
-            contentControl.CommandBindings.Add(new CommandBinding(newCmd, DoShortcut));
-
-            return null;
-        }
-
-        private void DoShortcut(object sender, ExecutedRoutedEventArgs e)
-        {
-            Integration("onShort", "",((RoutedCommand)e.Command).Name);
-        }
-
-        public void Integration(string event_name, string id="", string col="", string item="", string par="")
-        {
-
-            var ret = lua.DoString(string.Format("B12_Integretion_Function('{0}','{1}','{2}','{3}','{4}')",                
+            var ret = lua.DoString(string.Format("B12_Integretion_Function('{0}','{1}','{2}','{3}','{4}')",
                 event_name, id, col, item, par));
             if (ret == "close")
             {
@@ -76,11 +62,11 @@ namespace kb21_wpf
                 if (page)
                 {
                     //MyFrame.Remove((KbTabItem)contentControl);
-                    Window w = (Window)contentControl;
-                    w.Close();
+                    //to fix
+                    
 
                 }
-                
+
             }
 
         }
@@ -88,7 +74,7 @@ namespace kb21_wpf
         public void Integration(string event_name, string id, Ret data)
         {
             var fun = lua.GetPtr().GetFunction("B12_Integretion_Function");
-            var ret=fun.Call(event_name, id, data);
+            var ret = fun.Call(event_name, id, data);
             if (ret.ToString() == "close")
             {
                 if (dialog)
@@ -122,16 +108,16 @@ namespace kb21_wpf
             }
 
             var dialog = new KbDialog(arg);
-            if(arg.Try("smb",out string smb))
+            if (arg.Try("smb", out string smb))
             {
-                dialog_list[smb]=dialog;
+                dialog_list[smb] = dialog;
             }
 
             KbLua.CopyTable("B12_Integretion_arg", tab, dialog.win.lua);
             dialog.Owner = App.Current.MainWindow;
-            
+
             ret = dialog.win.lua.DoString(Get("new_window_init_script"));
-            
+
             if (ret != "")
             {
                 dialog.Close();
@@ -145,11 +131,12 @@ namespace kb21_wpf
                 return false;
             }
 
-            
+
             dialog.ShowDialog();
             KbLua.CopyTable("B12_Integretion_ret", dialog.win.lua, lua);
             dialog.Close();
             return false;
         }
+
     }
 }

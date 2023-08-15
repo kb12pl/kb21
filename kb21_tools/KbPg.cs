@@ -1,7 +1,7 @@
 ﻿using Npgsql;
 using Dapper;
 using System.Xml;
-
+using static kb21_tools.KbLog;
 
 namespace kb21_tools
 {
@@ -20,6 +20,8 @@ namespace kb21_tools
         }
         public static async Task InsertAsync(string query, object[] rows)
         {
+            
+            
             await using var conn = new NpgsqlConnection(connString);
             await conn.OpenAsync();
 

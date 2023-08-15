@@ -16,12 +16,21 @@ namespace kb21_wpf
         public MainWindow()
         {
             InitializeComponent();
-            LogInit((string s)=>System.Windows.MessageBox.Show(s), null);
-            win=new KbWindow(this);
-            staticTabControl = myTabCtrl;
+            WindowState = WindowState.Maximized;
+            Title = "Bite it - Rcp ver-1.0";
+
+            LogInit((string s)=>System.Windows.MessageBox.Show(s), null);                        
             Loaded += MyLoaded;
+            
         }
-        private void MyLoaded(object sender, RoutedEventArgs e)=>win.lua.DoScript("kb21_frame");
+        private void MyLoaded(object sender, RoutedEventArgs e)
+        {
+            staticTabControl = myTabCtrl;            
+            win = new KbWindow(this, MainMenu);        
+            win.lua.DoScript("kb21_frame");
+        }
+
+
         internal static bool NewPage(KbTabItem page)
         {            
                 

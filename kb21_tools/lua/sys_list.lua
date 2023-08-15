@@ -43,3 +43,7 @@ function ctrl.list:onShow()
 	
 	ctrl.list:select()
 end
+
+function ctrl.list:event()
+	doExit(ctrl.list:getKey())	
+end

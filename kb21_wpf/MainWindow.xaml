@@ -6,21 +6,12 @@
         xmlns:local="clr-namespace:kb21_wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <DockPanel Background="Black">
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Command="New" />
-                <Separator />
-                <MenuItem Header="_Exit" />
-            </MenuItem>
-            <MenuItem Header="_Edit">
-                <MenuItem Command="Cut" />
-                <MenuItem Command="Copy" />
-                <MenuItem Command="Paste" />
-            </MenuItem>
+    <DockPanel>
+        <Menu Name="MainMenu" DockPanel.Dock="Top">
+            
         </Menu>
         <Border BorderThickness="0">
-            <TabControl Name="myTabCtrl" Background="Black"/>
+            <TabControl Name="myTabCtrl"/>
         </Border>
     </DockPanel>
 </Window>
