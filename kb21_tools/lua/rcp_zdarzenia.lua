@@ -1,8 +1,10 @@
 function win:on_create()
    ctrl.dock:as_dock()   
    ctrl.stack:as_stack_v('dock')
-   --ctrl.indeks:as_search('stack','-nazwa')
-   --ctrl.indeks:as_search('stack','-indeks')   
+   ctrl.date:as_date('stack','Data')
+   ctrl.pokaz:as_button('stack','Pokaż').event=function()win:on_show()end
+   ctrl.zamknij:as_button('stack','Zamknij')
+
    
    
    ctrl.grid:as_grid('dock')
@@ -10,7 +12,9 @@ function win:on_create()
    ctrl.grid:add_column('Czas')      
    ctrl.grid:add_column('Kod')         
    ctrl.grid:add_column('Drzwi Kod')         
-   ctrl.grid:add_column('Karta Kod')   
+   ctrl.grid:add_column('Drzwi Nazwa')         
+   ctrl.grid:add_column('Karta Kod')   
+   ctrl.grid:add_column('Karta Osoba')   
 end
 
 function win:on_load()	
@@ -19,41 +23,20 @@ end
 
 function win:on_show()
 	ctrl.grid:sql(sf([[
-select rcp_id,czas,zdarzenie,drzwi_kod,karta_kod from rcp
-order by czas desc 
-limit 1000
-
-	]]) )
+select rcp_id,czas,zdarzenie,drzwi_kod, nazwa, karta_kod, concat_ws(' ',nazwisko,imie)
+from rcp left join drzwi using(drzwi_kod)
+left join karty using(karta_kod)
+where czas::date=#1
+order by czas 
+	]],ctrl.date:get()) )
 end
 
-function ctrl.dodaj:event()	
-	win:send('Tech-E1','ok(22)')	
-end
 
-function ctrl.dodaj1:on_event()
-	local tmp=kb.get_text_empty_stop()	
-	kb.sql(sf([[
-insert into indeksy(indeks) values(#1)	
-	]],tmp))
+function ctrl.date:event()
 	win:on_show()
 end
 
+function ctrl.zamknij:event()
+	win:on_close()
+end  
 
-
-
-
-function ctrl.indeks:on_event()
-
-	win:on_show()
-
-end
-
-
-
-
-
-function ctrl.grid:indeks(key)
-
-	win:exit(key.indeks)
-
-end

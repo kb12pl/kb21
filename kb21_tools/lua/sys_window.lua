@@ -79,6 +79,7 @@ end
 function win:close()
     error('close',0)
 end
+
 function win:on_close()	
     self:close()
 end
@@ -334,7 +335,7 @@ function win:on_boot(reload)
     	win:on_create()
     end        
     
-    --self:short("F1",string.format("kb.sys_dialog('sys_code') "),true)    
+    self:short("F1",string.format("kb.sys_dialog('sys_code') "),true)    
     self:short("F2",string.format("kb.sys_dialog('sys_code',{name='%s'}) ",self.script),true)    
     self:short("F3",string.format("win:reloadKb()   kb['%s']()", self.script),true)    
     self:short('Ctrl+F3',"win:on_boot(true)")     

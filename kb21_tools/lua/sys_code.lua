@@ -1,5 +1,5 @@
 function win:on_create()
-	--win:maximized()	
+	--win:maximized()			
 	ctrl.pp:as_dock('')	 
 	ctrl.code:as_code('pp')	
 	
@@ -14,9 +14,10 @@ function win:on_create()
 	win:short('F10',"win:shortF2('window')")
 	win:short('F11',"win:shortF2('ctrl')")
 	win:short('F12',"win:shortF12()")	
+
 end
 
-function win:on_load(script)	
+function win:on_load(script)
 	self:load_script( inarg.name or win:global('globalLastScript') )
 end
 

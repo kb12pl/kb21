@@ -74,8 +74,5 @@ where karta_id=#2
 end
 
 function ctrl.zamknij:event()
-	local s=kb.sys_scripts().list
-	for k,v in pairs(s) do
-		ok(k)
-	end	
+	win:on_close()
 end

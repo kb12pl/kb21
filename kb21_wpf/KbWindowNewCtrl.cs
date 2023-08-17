@@ -34,6 +34,8 @@ namespace kb21_wpf
                 ctrl = new KbLabel(arg, this);
             if (arg.Is("isWeb"))
                 ctrl = new KbWebView(arg, this);
+            if (arg.Is("isDate"))
+                ctrl = new KbDatePicker(arg, this);
             
 
             if (ctrl==null)

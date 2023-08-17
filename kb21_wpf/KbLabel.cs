@@ -15,9 +15,8 @@ namespace kb21_wpf
         public KbLabel(MyArg arg, KbWindow _win)
         {
             id = arg.Get("id");
-            win = _win;
-            Foreground = Brushes.White;
-            Content = arg.Get("label");
+            win = _win;            
+            Content = arg.Get("label");          
         }
     }
 }

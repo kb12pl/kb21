@@ -1,8 +1,7 @@
 ﻿global using kb21_tools;
 global using static kb21_tools.KbConf;
 global using static kb21_tools.KbLog;
-
-
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +20,6 @@ namespace kb21_wpf
 
             LogInit((string s)=>System.Windows.MessageBox.Show(s), null);                        
             Loaded += MyLoaded;
-            
         }
         private void MyLoaded(object sender, RoutedEventArgs e)
         {

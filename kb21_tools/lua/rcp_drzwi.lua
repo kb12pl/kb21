@@ -3,7 +3,7 @@ function win:on_create()
    ctrl.dock:as_dock()   
    ctrl.stack:as_stack_v('dock')
    ctrl.dodaj:as_button('stack','Dodaj')
-  
+   ctrl.zamknij:as_button('stack','Zamknij')
 
    ctrl.grid:as_grid('dock')
    ctrl.grid:add_column('Nr Drzwi','nr')
@@ -63,3 +63,8 @@ where drzwi_id=#2
 	]],tmp, key.drzwi_id))
 	win:on_show()
 end
+
+function ctrl.zamknij:event()
+	win:on_close()
+end  
+

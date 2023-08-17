@@ -1,9 +1,5 @@
 local ctrl_meta={idSerial=1,ptr=win.ptr,}
 
-function ctrl_meta:newLabel(master) 
-	self.ptr:NewCtrl({parent=master.parent,label=master.label, isLabel=true})
-end
-
 function ctrl_meta:newCtrl(parent,label,arg)
 	arg.id=self.id
 	arg.parent=parent		
@@ -23,13 +19,11 @@ function ctrl_meta:newCtrl(parent,label,arg)
 		self.label =c
 		arg.label=c
 	end
-	if self.is_button then
-		self.label=self.id
-	end
+
       
       
-	if self.is_search then
-	    ctrl[arg.id..'_inner_label']:newLabel(self)
+	if self.is_search or self.is_date then		    
+	    self.ptr:NewCtrl({parent=self.parent,label=self.label, isLabel=true})
 	end
 	
 	
@@ -102,6 +96,14 @@ function ctrl_meta:as_button(parent,label,arg)
 	end		
 	return self:newCtrl(parent,label, arg)
 end
+
+function ctrl_meta:as_date(parent,label,arg)
+	arg=arg or {}	
+	arg.isDate=true
+	self.is_date=true		
+	return self:newCtrl(parent,label, arg)
+end
+
 
 function ctrl_meta:as_label(parent,label,arg)
 	arg=arg or {}	

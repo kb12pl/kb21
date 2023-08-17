@@ -132,37 +132,40 @@ function this:run_uni(par,script,window,arg)
 end
 
 local list=this.list
-this:add('indeksy_a',true,false,'Ind-A', true,'Indeksy')
-this:addT('indeksy_b',{smb='Ind-B', link='Ind-A', title='Wybierz Indeks'})
-this:addT('indeksy_wybierz')
-this:add('indeksy_w_dodaj',true,false,'indeksy-dodaj')
-list.tech_a={window='Tech-A', title='Technologie',page=true}
-list.tech_e={window='Tech-E1', title='Edycja Technologii',work=true}
-this:addT('web_lua',{smb='Web-Lua',page=true,work=true})
-this:addT('web_google',{smb='Web-Google',page=true,work=true})
+--this:add('indeksy_a',true,false,'Ind-A', true,'Indeksy')
+--this:addT('indeksy_b',{smb='Ind-B', link='Ind-A', title='Wybierz Indeks'})
+--this:addT('indeksy_wybierz')
+--this:add('indeksy_w_dodaj',true,false,'indeksy-dodaj')
+--list.tech_a={window='Tech-A', title='Technologie',page=true}
+--list.tech_e={window='Tech-E1', title='Edycja Technologii',work=true}
+
 this:add('get_list')
 this:add('get_text_empty_stop',true,true)
-this:add('get_text',true,true)
-list.sql={work=true}
-list.sql_tab={work=true}
-list.sql_tabn={work=true}
-this:add('sql_create_database',true,true)
-this:add('sys_boot',true,true)
+this:add('get_text',true,true)
+
+this:add('kb21_frame',true,true)this:add('sql',true,true)
+this:add('sql_tab',true,true)
+this:add('sql_tabn',true,true)
+
+this:add('system_export',true,true)
+
 this:add('sys_code',true,true,'sys_code',true)
-list.sys_console={}
+this:add('sys_console',true,true,'sys_console',true)
 this:add('sys_ctrl',true,true)
 this:add('sys_dialog',true,true)
 this:add('sys_get',true,true,'sys_get')
 this:add('sys_global',true,true)
-list['sys_help']={work=true}
-list['sys_list']={window='sys_list'}
-list['sys_log']={work=true}
+this:add('sys_help',true,true)
+this:add('sys_list',true,true,'sys_list')
+this:add('sys_log',true,true)
 this:add('sys_page',true,true)
 this:add('sys_query',true,true,'sys_query',true,'Query tool')
-list.sys_scripts={work=true}
-list.sys_scripts_list={work=true}
-this:add('sys_testy',true,true,'ala',true)
+this:add('sys_scripts',true,true)
+this:add('sys_testy',true,true)
 this:add('sys_window',true,true)
+
+this:addT('web_lua',{smb='Web-Lua',page=true,work=true})
+this:addT('web_google',{smb='Web-Google',page=true,work=true})
 
 this:add('rcp_zdarzenia',true,true,'rcp_zdarzenia',true,'Zdarzenia')
 this:add('rcp_karty',true,true,'rcp_karty',true,'Karty')

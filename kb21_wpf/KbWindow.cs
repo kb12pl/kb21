@@ -61,10 +61,7 @@ namespace kb21_wpf
                 }
                 if (page)
                 {
-                    //MyFrame.Remove((KbTabItem)contentControl);
-                    //to fix
-                    
-
+                    MainWindow.Remove((KbTabItem)contentControl);
                 }
 
             }

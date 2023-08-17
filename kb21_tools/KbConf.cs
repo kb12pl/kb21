@@ -14,6 +14,7 @@ namespace kb21_tools
     public class KbConf
     {        
         static bool isLoad = false;
+        static public bool isProdution = false;
         static Dictionary<string, string> dict = new();
         static Dictionary<string, string> dictSecret = new();
         static Dictionary<string, object> globals = new();
@@ -32,8 +33,16 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                dict["prefix_file_script"] = "c:/repo/kb21/kb21_tools/lua/";
-                dict["secret_config_file"] = "c:/repo/config.txt";
+                if (isProdution)
+                {                 
+                    dict["prefix_file_script"] = "lua/";
+                    dict["secret_config_file"] = "config.txt";
+                }
+                else
+                {                    
+                    dict["prefix_file_script"] = "c:/repo/kb21/kb21_tools/lua/";
+                    dict["secret_config_file"] = "c:/repo/config.txt";
+                }
             }
             else
             {
@@ -92,7 +101,9 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             try
             {
                 Dictionary<string, string>? tmp;
-                tmp = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Get("secret_config_file")));
+                string s;
+                s = File.ReadAllText(Get("secret_config_file"));
+                tmp = JsonConvert.DeserializeObject<Dictionary<string, string>>(s);
                 if (tmp is not null)
                     dictSecret = tmp;
             }
