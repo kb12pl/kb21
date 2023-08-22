@@ -57,7 +57,7 @@ function this:run_list()
 
 		if v.page then
 
-			tmp[k]=v.window..' - '..(v.title or'')
+			tmp[k]=v.title or v.window
 
 		end
 
@@ -171,7 +171,9 @@ this:add('rcp_zdarzenia',true,true,'rcp_zdarzenia',true,'Zdarzenia')
 this:add('rcp_karty',true,true,'rcp_karty',true,'Karty')
 this:add('rcp_drzwi',true,true,'rcp_drzwi',true,'Drzwi')
 this:add('rcp_glowne',true,true,'rcp_glowne',true,'Wejście główne')
-this:add('rcp_produkcja',true,true,'rcp_produkcja',true,'Wejście na produkcję')
+this:add('rcp_hala',true,true,'rcp_hala',true,'Wejście hala')
+this:add('rcp_glowne_mies',true,true,'rcp_glowne_mies',true,'Miesięcznie glówne')
+this:add('rcp_hala_mies',true,true,'rcp_hala_mies',true,'Miesięcznie hala')
 
 
 

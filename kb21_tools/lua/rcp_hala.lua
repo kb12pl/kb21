@@ -20,11 +20,11 @@ end
 function win:on_show()
 	ctrl.grid:sql(sf([[
 select czas::date as dd,concat_ws(' ',nazwisko,imie),
-case when filtr='we-produkcja' then '-->'||czas::time end,
-case when filtr='wy-produkcja' then '<--'||czas::time end
-from rcp join karty using(karta_kod)
-join drzwi using(drzwi_kod)
-where czas::date=#1 and filtr in ('we-produkcja', 'wy-produkcja')
+case when filtr='we-hala' then '-->'||czas::time end,
+case when filtr='wy-hala' then '<--'||czas::time end
+from rcp join drzwi using(drzwi_kod)
+left join karty using(karta_kod) 
+where czas::date=#1 and filtr in ('we-hala', 'wy-hala')
 order by nazwisko,imie,czas 
 	]],ctrl.date:get()) )
 end

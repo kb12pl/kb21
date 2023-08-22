@@ -14,12 +14,12 @@ win.ptr:AppendMenu({parent="Konfiguracja",name="Drzwi"})
 
 win.ptr:AppendMenu({parent="",name="Drzwi"})
 win.ptr:AppendMenu({parent="Drzwi",name="We-wy główne"})
-win.ptr:AppendMenu({parent="Drzwi",name="We-wy na produkcję"})
+win.ptr:AppendMenu({parent="Drzwi",name="We-wy hala"})
 win.ptr:AppendMenu({parent="Drzwi",name="Wszystkie zdarzenia"})
 
 win.ptr:AppendMenu({parent="",name="Pracownicy"})
 win.ptr:AppendMenu({parent="Pracownicy",name="Miesięcznie we-wy główne"})
-win.ptr:AppendMenu({parent="Pracownicy",name="Miesięcznie we-wy na produkcję"})
+win.ptr:AppendMenu({parent="Pracownicy",name="Miesięcznie we-wy hala"})
 
 
 win.event_lock=false
@@ -34,12 +34,12 @@ function win:onMenu(menu)
         kb.sys_page('rcp_drzwi')  
     elseif menu=='We-wy główne' then
         kb.sys_page('rcp_glowne')
-    elseif menu=='We-wy na produkcję' then
-        kb.sys_page('rcp_produkcja')
+    elseif menu=='We-wy hala' then
+        kb.sys_page('rcp_hala')
     elseif menu=='Miesięcznie we-wy główne' then
-        kb.sys_page('rcp_glowns_meisiecznie')
-    elseif menu=='Miesięcznie we-wy na produkcję' then
-        kb.sys_page('rcp_produkcja_miesiecznie')
+        kb.sys_page('rcp_glowne_mies')
+    elseif menu=='Miesięcznie we-wy hala' then
+        kb.sys_page('rcp_hala_mies')
     end
     
 end
