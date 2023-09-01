@@ -84,6 +84,9 @@ function win:on_close()
     self:close()
 end
 
+function win:exitFrame()
+	self:cmd({frame_close=true})
+end
 
 function win:pcall(fun,x,...)    	
 	local a,b=pcall(fun,x,...)			
@@ -191,8 +194,9 @@ end
 
 
 function win:global(key,val)    
-	key=tostring(key)
+	key=tostring(key)	
 	if val then        
+		val=tostring(val)
 		self.ptr:SetGlobal(key,val)
 		return val
 	else        
@@ -258,6 +262,8 @@ function win:size(d,h)
 	self:cmd({width=d,height=h})
 end
 
+
+
 function win:cmd(arg)
 	if self.ptr:CmdWin(arg) then				
 		if xtab then	
@@ -270,6 +276,15 @@ function win:cmd(arg)
 end
 
 
+function win:mess(a,b,t)	
+	b=b or 'Komunikat'
+	local arg={message=tostring(a),caption=tostring(b)}
+      if true or t=='yes_no' then
+      		arg.yes_no=true
+      	end
+      	self:cmd(arg)
+       return arg.yes 
+end
 
 
 function xlog(...)
@@ -350,9 +365,9 @@ function win:on_boot(reload)
 	if self.isPage then
 		self:short("Ctrl+W","win:on_close()" )
 	else
-		--self:short("Esc","win:on_close()")
-		---jakis blad
-		self:short("Esc","  error('close',0)")
+		self:short("Esc","win:on_close()")
+		--jesli  blad
+		--self:short("Esc","  error('close',0)")
 	end      
 
 	if reload and self.on_load then

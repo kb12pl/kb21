@@ -12,7 +12,7 @@ function win:on_create()
 	win:short('F7',"ctrl.code:find_ask()")
 	win:short('F9',"win:shortF9()")
 	win:short('F10',"win:shortF2('window')")
-	win:short('F11',"win:shortF2('ctrl')")
+	win:short('F11',"win:shortF11()")
 	win:short('F12',"win:shortF12()")	
 
 end
@@ -22,7 +22,7 @@ function win:on_load(script)
 end
 
 function win:load_script(script)	
-	--self:save_last()	
+	self:save_last()	
 	current_script=script
 	win.ptr:CmdWin({title=script})
 	ctrl.code:focus()
@@ -37,13 +37,13 @@ function win:load_script(script)
 end
 
 function win:save_last()
-	if current_script and current_script~='' then		
+	if current_script and current_script~='' then			
 		self:global('globalLastScript',current_script)			
 		self:global('globalLastScript_caret_'..current_script,ctrl.code:get_caret())		
 	end		
 end
 
-function win:on_close()		
+function win:on_close()			
 	self:save_last()
 	self:exit()
 end
@@ -51,15 +51,22 @@ end
 function win:shortF12()
 	local tab={}
 	tab.insert_func="Insert Fun".."ction"
+	tab.query_tables="Tables and columns"
 	local a,b=kb.get_list('',tab)
 	if a then
 		self[b](self)
 	end
 end
 
-function win:insert_func()
-	self:shortF1(true)
+function win:insert_func()
+	self:shortF1(true)
 end
+function win:query_tables()
+	kb.sys_dialog('sys_tables')	
+end
+
+	
+	
 function win:shortF4()
 	local tmp=ctrl.code:getCurrentWorld()		
 	kb.sys_dialog('sys_code',{name=tmp})		
@@ -134,4 +141,8 @@ function win:shortF9()
 	self:shortF3()
 	kb.sys_testy=nil
 	kb.sys_testy()
-end
+end
+
+function win:shortF11()
+	kb.sys_dialog('sys_query')
+end

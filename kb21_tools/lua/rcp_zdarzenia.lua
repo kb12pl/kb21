@@ -23,9 +23,9 @@ end
 
 function win:on_show()
 	ctrl.grid:sql(sf([[
-select rcp_id,czas,zdarzenie,drzwi_kod, nazwa, karta_kod, concat_ws(' ',nazwisko,imie)
+select rcp_id,czas,zdarzenie,drzwi_kod, nazwa, karta_kod, osoba
 from rcp left join drzwi using(drzwi_kod)
-left join karty using(karta_kod)
+left join osoby using(karta_kod)
 where czas::date=#1
 order by czas 
 	]],ctrl.date:get()) )

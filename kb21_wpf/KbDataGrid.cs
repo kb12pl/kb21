@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using kb21;
 
 
 namespace kb21_wpf
@@ -22,6 +21,7 @@ namespace kb21_wpf
             id = arg.Get("id");
             win = _win;
             IsReadOnly = true;
+            CanUserSortColumns = false;
             SelectionUnit = DataGridSelectionUnit.Cell;
             MouseDoubleClick += MyDoubleClick;
             PreviewKeyDown += MyPreviewKeyDown;
@@ -46,6 +46,14 @@ namespace kb21_wpf
             // Set the cell style for the grid
             CellStyle = cellStyle;
             */
+        }
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            if (e.Key == Key.F3)
+            {
+                e.Handled = true;
+                win.DoSendF3();
+            }            
         }
 
 

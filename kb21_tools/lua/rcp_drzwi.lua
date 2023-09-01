@@ -1,15 +1,17 @@
 function win:on_create()
 
    ctrl.dock:as_dock()   
-   ctrl.stack:as_stack_v('dock')
+   ctrl.stack:as_stack_v('dock')   
    ctrl.dodaj:as_button('stack','Dodaj')
+   ctrl.pokaz:as_button('stack','Pokaż').event=function()win:on_show()end
    ctrl.zamknij:as_button('stack','Zamknij')
 
    ctrl.grid:as_grid('dock')
    ctrl.grid:add_column('Nr Drzwi','nr')
    ctrl.grid:add_column('Nazwa','nazwa')      
    ctrl.grid:add_column('Kod','drzwi_kod')  
-   ctrl.grid:add_column('Filtr','filtr')  
+   ctrl.grid:add_column('Filtr','filtr')  
+   ctrl.grid:add_column('Uprawnienia','uprawnienia')  
 end
 
 function win:on_load()	
@@ -19,14 +21,19 @@ end
 function win:on_show()
 
 	ctrl.grid:sql([[
-select drzwi_id, nazwa, drzwi_kod, filtr
-from drzwi
+select drzwi_id, nazwa, drzwi_kod, filtr, ss
+from drzwi 
+left join
+(
+select drzwi_id,count(*) as ss from uprawnienia 
+group by drzwi_id
+) as aa using(drzwi_id)
 order by nazwa
 	]])
 end
 
 
-function ctrl.dodaj:event()
+function ctrl.dodaj:event()	
 	local tmp=kb.get_text_empty_stop('Nazwisko')	
 	kb.sql(sf([[
 insert into drzwi(nazwa) values(#1)	
@@ -56,7 +63,7 @@ end
 
 
 function ctrl.grid:drzwi_kod(key)
-	local tmp=kb.get_text_empty_stop('Nazwa',key.drzwi_kod)	
+	local tmp=kb.get_text_empty_stop('Kod',key.drzwi_kod)	
 	kb.sql(sf([[
 update drzwi set drzwi_kod=#1 
 where drzwi_id=#2
@@ -68,3 +75,6 @@ function ctrl.zamknij:event()
 	win:on_close()
 end  
 
+function ctrl.grid:uprawnienia(key)
+	kb.sys_dialog('rcp_drzwi_upr',{drzwi_id=key.drzwi_id})
+end

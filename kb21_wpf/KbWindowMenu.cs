@@ -30,6 +30,10 @@ namespace kb21_wpf
 
             return null;
         }
+        public void DoSendF3()
+        {            
+            Integration("onShort", "", "F3");
+        }
 
         private void DoShortcut(object sender, ExecutedRoutedEventArgs e)
         {          

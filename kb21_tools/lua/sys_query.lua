@@ -18,9 +18,9 @@ function win.on_load()
 	ctrl.code:focus()		
 end
 
-function win:on_close()
-	win:global('globalLastQuery',ctrl.code:get())			       
-	win:global('globalLastQueryCaret',ctrl.code:get_caret())			
+function win:on_close()	
+	win:global('globalLastQuery',ctrl.code:get())			       	
+	win:global('globalLastQueryCaret',ctrl.code:get_caret())				
 	win:exit()
 end
 
@@ -30,6 +30,8 @@ function win:shortF5()
 	if query=='' then
 		return
 	end
+	
+	ctrl.rap:clear()
 
 	local tab,lab,err=win:sql(query)
 

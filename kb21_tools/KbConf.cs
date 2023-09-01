@@ -12,9 +12,11 @@ using static kb21_tools.KbLog;
 namespace kb21_tools
 {
     public class KbConf
-    {        
+    {
+        static public bool isProdution = true;
+
         static bool isLoad = false;
-        static public bool isProdution = false;
+        
         static Dictionary<string, string> dict = new();
         static Dictionary<string, string> dictSecret = new();
         static Dictionary<string, object> globals = new();

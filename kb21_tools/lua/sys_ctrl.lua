@@ -4,11 +4,11 @@ function ctrl_meta:newCtrl(parent,label,arg)
 	arg.id=self.id
 	arg.parent=parent		
 	self.parent=parent
-	
-    if label then
-		local a,b,c=string.match(label,'^(%-?)([%+%.]?)(.*)')            
+    self.label=label or self.id
+    if self.label~='' then
+		local a,b,c=string.match(self.label,'^(%-?)([%+%.]?)(.*)')            
 		if c=='' then
-				c=self.id
+			c=self.id
 		end
 	    
 		if a=='-'  then
@@ -22,7 +22,7 @@ function ctrl_meta:newCtrl(parent,label,arg)
 
       
       
-	if self.is_search or self.is_date then		    
+	if self.has_label then		
 	    self.ptr:NewCtrl({parent=self.parent,label=self.label, isLabel=true})
 	end
 	
@@ -101,6 +101,7 @@ function ctrl_meta:as_date(parent,label,arg)
 	arg=arg or {}	
 	arg.isDate=true
 	self.is_date=true		
+	self.has_label=true
 	return self:newCtrl(parent,label, arg)
 end
 
@@ -118,11 +119,12 @@ end
 function ctrl_meta:as_search(parent,label,arg)
 	arg=arg or {}
 	if not arg.width then
-		arg.width=100
+		--arg.width=100
 	end
 	arg.onEnter=true	
 	arg.isText=true
 	self.is_search=true
+	self.has_label=true
 	return self:newCtrl(parent,label,arg)	
 end
 
@@ -133,8 +135,9 @@ function ctrl_meta:as_text(parent,label,arg)
 	end
 	arg.onEnter=arg.enter	
 	arg.onKey=arg.key
-	arg.isText=true
+	arg.isText=true	
 	self.is_text=true	
+	self.has_label=true
 	return self:newCtrl(parent,label,arg)
 end
 
