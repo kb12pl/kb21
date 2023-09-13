@@ -105,10 +105,14 @@ function win:doString(name,script)
 	a()
 end
 
-function win:doLoad(name,script)      
+function win:doLoad(name,script)   	
+	if not script then	
+		ok('script is null',name)
+		self:stop()
+	end
 	local a,b=load(script,name)  
 	if not a then			
-		ok(b)
+		ok(b,name)
 		self:stop()
 	end
 	return a
@@ -193,10 +197,10 @@ function xtab(tab)
 end
 
 
-function win:global(key,val)    
+function win:global(key,val)        
 	key=tostring(key)	
 	if val then        
-		val=tostring(val)
+		--val=tostring(val)
 		self.ptr:SetGlobal(key,val)
 		return val
 	else        
@@ -233,7 +237,7 @@ function win:sql(query,ret_error)
 		if ret_error then		
 			return nil,nil,ret.error
 		else
-			self:error(ret.error)
+			self:error(ret.error..'\n\n'..query)
 		end	
 	end
 	local tab={}

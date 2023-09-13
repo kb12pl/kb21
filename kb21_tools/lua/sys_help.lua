@@ -1,9 +1,4 @@
-
-
-win:getGlobal()
-win:setGlobal()
-sysGlobal(kev,val)
-
+win:global(key,val)  -- get set global
 
 kb.sysDialog()
 kb.sysTab()

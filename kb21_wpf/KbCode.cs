@@ -135,6 +135,10 @@ namespace kb21_wpf
                 Document.Insert(caretOffset, text);
                 return false;
             }
+            
+            if (arg.Is("get_selected"))
+                return arg.Set("text", SelectedText);
+
 
             if (arg.Is("current_word"))
                 return arg.Set("text", GetCurrentWord());

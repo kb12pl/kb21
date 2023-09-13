@@ -1,2 +1,2 @@
 local query=...
-return win:sql(query)
+return win:sql(...)

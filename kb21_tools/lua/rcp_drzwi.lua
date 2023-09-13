@@ -34,7 +34,7 @@ end
 
 
 function ctrl.dodaj:event()	
-	local tmp=kb.get_text_empty_stop('Nazwisko')	
+	local tmp=kb.get_text_empty_stop('Nazwa')	
 	kb.sql(sf([[
 insert into drzwi(nazwa) values(#1)	
 	]],tmp))

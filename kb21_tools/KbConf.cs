@@ -13,7 +13,7 @@ namespace kb21_tools
 {
     public class KbConf
     {
-        static public bool isProdution = true;
+        static public bool isProdution = false;
 
         static bool isLoad = false;
         
@@ -116,15 +116,19 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             isLoad = true;
         }
         public static void SetGlobal(string key, object b)
-        {
+        {            
+
             globals[key] = b;
         }
-        public static object? GetGlobal(string key)
-        {
+        public static object? GetGlobal(string key)        {
+            
+            
             if (globals.TryGetValue(key, out object? obj))
             {
+         
                 return obj;
             }
+            
             return null;
         }
     }

@@ -7,6 +7,7 @@ namespace kb21_tools
 {
     public class KbLua
     {
+        private static readonly NLua.Lua global= new();
         private readonly NLua.Lua lua = new();
         public KbLua(IKbWindow o)
         {            
@@ -82,6 +83,15 @@ namespace kb21_tools
         public void SetNil(string v)
         {
             lua[v] = null;
+        }
+
+        public static void SetGlobal()
+        {
+
+        }
+        public static GetGlobal()
+        {
+
         }
         
     }

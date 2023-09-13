@@ -1,6 +1,7 @@
 function win:on_create()
    ctrl.dock:as_dock()   
    ctrl.stack:as_stack_v('dock')   
+   ctrl.pokaz:as_button('stack','Pokaż').event=function()win:on_show()end
    ctrl.zamknij:as_button('stack','Zamknij').event=function()win:on_close()end
 
    ctrl.grid:as_grid('dock')

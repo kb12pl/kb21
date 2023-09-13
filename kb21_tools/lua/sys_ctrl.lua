@@ -181,6 +181,12 @@ function ctrl_meta:get()
 	return arg.text
 end
 
+function ctrl_meta:get_selected()	
+	local arg={get_selected=true}
+	self:cmd(arg)
+	return arg.text
+end
+
 function ctrl_meta:getCurrentWorld()	
 	local arg={current_word=true}
 	self:cmd(arg)

@@ -4,7 +4,7 @@ function win:on_create()
 	ctrl.text:as_text('stack',inarg.title,{enter=true})
 	ctrl.stack_ok:as_stack_h('stack','',{center=true})
 	ctrl.ok:as_button('stack_ok','Ok',{})
-	ctrl.cancel:as_button('stack_ok','Cancel',{})		
+	ctrl.cancel:as_button('stack_ok','Cancel').event=function() win:on_close() end		
 end
 
 function win:on_load()

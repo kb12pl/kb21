@@ -8,6 +8,7 @@ function win:on_create()
 	win:short('F3',"win:shortF3()")
 	win:short('F4',"win:shortF4()")		
 	win:short('Ctrl-F4',"win:shortF4()")		
+	win:short('Ctrl-F5',"win:shortCtrlF5()")		
 	win:short('F6',"ctrl.code:find_next( ctrl.code:getCurrent() )")
 	win:short('F7',"ctrl.code:find_ask()")
 	win:short('F9',"win:shortF9()")
@@ -38,6 +39,9 @@ end
 
 function win:save_last()
 	if current_script and current_script~='' then			
+		self:global('globalLastScript3',self:global('globalLastScript2'))			
+		self:global('globalLastScript2',self:global('globalLastScript1'))			
+		self:global('globalLastScript1',self:global('globalLastScript'))			
 		self:global('globalLastScript',current_script)			
 		self:global('globalLastScript_caret_'..current_script,ctrl.code:get_caret())		
 	end		
@@ -146,3 +150,18 @@ end
 function win:shortF11()
 	kb.sys_dialog('sys_query')
 end
+
+
+function win:shortCtrlF5()
+
+	local query=ctrl.code:get_selected()
+	
+	if query=='' then
+		return
+	end
+	
+	local tab,lab,err=win:sql(query,true)
+	if err then
+		ok(err..'\n\n'..query)
+	end
+end

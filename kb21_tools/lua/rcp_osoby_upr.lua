@@ -22,6 +22,7 @@ function win:on_show()
 select drzwi_id,nazwa from uprawnienia 
 join drzwi using(drzwi_id)
 where osoba_id=#1
+order by nazwa
 	]], inarg.osoba_id))
 end
 

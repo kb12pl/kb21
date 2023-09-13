@@ -26,14 +26,17 @@ end
 
 function win:shortF5()
 
-	local query=ctrl.code:get()
+	local query=ctrl.code:get_selected()
+	if query=='' then
+		query=ctrl.code:get()
+	end
 	if query=='' then
 		return
 	end
 	
 	ctrl.rap:clear()
 
-	local tab,lab,err=win:sql(query)
+	local tab,lab,err=win:sql(query,true)
 
 	if not tab then
 		ctrl.rap:set(1,1,err)	

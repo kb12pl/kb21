@@ -43,7 +43,7 @@ namespace kb21_wpf
         public void SetConfig(string key, string val) => KbConf.Set(key, val);
 
         public object? GetGlobal(string key) => KbConf.GetGlobal(key);
-        public void SetGlobal(string key,string val) => KbConf.SetGlobal(key, val);
+        public void SetGlobal(string key,object val) => KbConf.SetGlobal(key, val);
 
 
 
