@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+
 namespace kb21_wpf
 {
     public partial class KbWindow : IKbWindow
@@ -43,7 +44,11 @@ namespace kb21_wpf
         public void SetConfig(string key, string val) => KbConf.Set(key, val);
 
         public object? GetGlobal(string key) => KbConf.GetGlobal(key);
-        public void SetGlobal(string key,object val) => KbConf.SetGlobal(key, val);
+        public void SetGlobal(string key, object val) => KbConf.SetGlobal(key, val);
+
+        public void GetGlobalTable(string key) => lua.GetGlobal(key, "B12_Integretion_global");
+        public void SetGlobalTable(string key, LuaTable tab) => lua.SetGlobal(key, tab);
+
 
 
 
@@ -95,7 +100,7 @@ namespace kb21_wpf
             if (arg.Is("page"))
             {
                 var page = new KbTabItem(arg);
-                KbLua.CopyTable("B12_Integretion_arg", tab, page.win.lua);
+                KbLua.CopyTableFromKbLua("B12_Integretion_arg", tab, page.win.lua);
                 ret = page.win.lua.DoString(Get("new_window_init_script"));
                 if (ret != "")
                     return arg.Error(ret);
@@ -110,7 +115,7 @@ namespace kb21_wpf
                 dialog_list[smb] = dialog;
             }
 
-            KbLua.CopyTable("B12_Integretion_arg", tab, dialog.win.lua);
+            KbLua.CopyTableFromKbLua("B12_Integretion_arg", tab, dialog.win.lua);
             dialog.Owner = App.Current.MainWindow;
 
             ret = dialog.win.lua.DoString(Get("new_window_init_script"));

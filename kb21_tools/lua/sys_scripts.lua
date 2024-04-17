@@ -40,6 +40,7 @@ function this:create_list()
 	self:add('sys_scripts',true,true)
 	self:add('sys_scripts_win',true,true,'sys_scripts_win',true,'Sys scripts')
 	self:add('sys_tables',true,true,'sys_tables',true,'Sys tables')
+	self:add('sys_testy',true,true)
 	self:add('sys_window',true,true)
 	
 	
@@ -150,9 +151,5 @@ end
 
 --this.list=win:global('kb_system_scripts_list')
 
-if not this.list then		
-	this:create_list()	
-	win:global('kb_system_scripts_list',this.list)
-end
-
+this:create_list()	
 return this

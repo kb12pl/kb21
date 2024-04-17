@@ -7,12 +7,15 @@ namespace kb21_tools
 {
     public class KbLua
     {
-        private static readonly NLua.Lua global= new();
-        private readonly NLua.Lua lua = new();
-        public KbLua(IKbWindow o)
+        private static readonly Lua global = new();
+        private readonly Lua lua = new();
+        public KbLua()
         {            
+        }
+        public KbLua(IKbWindow o)
+        {
             lua.LoadCLRPackage();
-            lua.State.Encoding = Encoding.UTF8;            
+            lua.State.Encoding = Encoding.UTF8;
             lua["B12_Integretion_Object"] = o;
             DoString(KbConf.lua_start);
         }
@@ -57,41 +60,54 @@ namespace kb21_tools
             }
         }
 
-        public static LuaTable CopyTable(string path, LuaTable tb1, KbLua lua2)
+        public static LuaTable CopyTableFromKbLua(string path, LuaTable tb1, KbLua lua2)
         {
-            if (tb1 == null)
+            return CopyTable(path, tb1, lua2.lua);
+        }
+
+        public static LuaTable CopyTable(string path, LuaTable copyFrom, Lua toLua)
+        {
+            if (copyFrom == null)
             {
                 ok("Lua Table is nil: " + path);
                 return null;
             }
 
-            lua2.lua.NewTable(path);
-            LuaTable tb2 = lua2.lua[path] as LuaTable;
-            foreach (var key in tb1.Keys)
+            toLua.NewTable(path);
+            LuaTable tb2 = toLua[path] as LuaTable;
+            foreach (var key in copyFrom.Keys)
             {
-                if (tb1[key] is LuaTable)
+                if (copyFrom[key] is LuaTable)
                 {
-                    tb2[key] = CopyTable(path + '.' + key, tb1[key] as LuaTable, lua2);
+                    tb2[key] = CopyTable(path + '.' + key, copyFrom[key] as LuaTable, toLua);
                 }
                 else
                 {
-                    tb2[key] = tb1[key];
+                    tb2[key] = copyFrom[key];
                 }
             }
             return tb2;
         }
+
+
         public void SetNil(string v)
         {
             lua[v] = null;
         }
 
-        public static void SetGlobal()
-        {
+        public void SetGlobal(string key, LuaTable tab)                
+        {            
+            CopyTable(key, tab, global);           
 
         }
-        public static GetGlobal()
-        {
 
+        public void GetGlobal(string key,string name)
+        {
+            LuaTable tab= global[key] as LuaTable;
+            if (tab == null)
+                lua[key]= null;
+            else
+                CopyTable(name, tab, lua);
         }
         
     }

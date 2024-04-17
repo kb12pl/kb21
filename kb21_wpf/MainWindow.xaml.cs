@@ -1,6 +1,7 @@
 ﻿global using kb21_tools;
 global using static kb21_tools.KbConf;
 global using static kb21_tools.KbLog;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,8 +25,14 @@ namespace kb21_wpf
         private void MyLoaded(object sender, RoutedEventArgs e)
         {
             staticTabControl = myTabCtrl;            
-            win = new KbWindow(this, MainMenu);        
-            win.lua.DoScript("kb21_frame");
+            win = new KbWindow(this, MainMenu);
+            
+            if (Environment.GetCommandLineArgs().Length > 1)
+            {   
+                win.lua.DoScript(Environment.GetCommandLineArgs()[1]);
+            }                
+            else
+                ok("no start args");
         }
 
 

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "kb21_wpf": {
+      "commandName": "Project",
+      "commandLineArgs": "kb21_test"
+    }
+  }
+}

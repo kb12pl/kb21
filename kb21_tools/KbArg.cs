@@ -35,6 +35,11 @@ namespace kb21_tools
             return Convert.ToString(tab[key]);
         }
 
+        public LuaTable GetT(string key)
+        {
+            return (LuaTable)tab[key];
+        }
+
         public int GetI(string key,int def=0)
         {
             if (Int32.TryParse(Get(key), out int j))

@@ -81,8 +81,15 @@ end
 
 
 function ctrl.test.event()	
-	a={karol={ala=123}}
-	b=string.pack("",a)	
-	c=string.unpack("",b)
-	log(c.karol.ala)	
+	clear()
+	--win.ptr:SetGlobalTable("a",kb.sys_scripts())
+	win.ptr:GetGlobalTable("a")
+	a=B12_Integretion_global
+	log(type(a.list))
+	for k,v in pairs(a.list) do
+	--	log(k)		
+	end
+	log(a.run_list)
+	log(type(a.run_list))
+	
 end

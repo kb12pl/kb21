@@ -208,6 +208,17 @@ function win:global(key,val)
 	end
 end
 
+function win:global2(key,val)        
+	key=tostring(key)
+	if val then        
+		--val=tostring(val)
+		self.ptr:SetGlobal2(key,val)
+		return val
+	else        
+		return self.ptr:GetGlobal2(key)
+	end
+end
+
 
 function win:send(smb,script)    
 	return self:cmd({smb=smb,script=script})
