@@ -7,7 +7,7 @@ function win:on_create()
    ctrl.zamknij:as_button('stack','Zamknij')
 
    ctrl.grid:as_grid('dock')
-   ctrl.grid:add_column('Nr Drzwi','nr')
+   ctrl.grid:add_column('name')
    ctrl.grid:add_column('Nazwa','nazwa')      
    ctrl.grid:add_column('Kod','drzwi_kod')  
    ctrl.grid:add_column('Filtr','filtr')  
@@ -21,7 +21,7 @@ end
 function win:on_show()
 
 	ctrl.grid:sql([[
-select name,symbol,title 
+select name
 from kb_scripts
 order by name
 	]])
@@ -31,7 +31,7 @@ end
 function ctrl.dodaj:event()	
 	local tmp=kb.get_text_empty_stop('Nazwa')	
 	kb.sql(sf([[
-insert into drzwi(nazwa) values(#1)	
+insert into kb_scripts(name) values(#1)	
 	]],tmp))
 	win:on_show()
 end

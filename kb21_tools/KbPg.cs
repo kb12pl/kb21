@@ -8,43 +8,43 @@ namespace kb21_tools
 
     public class KbPg
     {
-        static string connString; 
-          
+        static string connString;
+
         static KbPg()
         {
             connString += "Host=" + KbConf.GetSecret("pg.host") + ";";
             connString += "Database=" + KbConf.GetSecret("pg.database") + ";";
-            connString+= "Username="+KbConf.GetSecret("pg.user")+";";
-            connString+= "Password="+KbConf.GetSecret("pg.pass")+";";            
+            connString += "Username=" + KbConf.GetSecret("pg.user") + ";";
+            connString += "Password=" + KbConf.GetSecret("pg.pass") + ";";
 
         }
         public static async Task InsertAsync(string query, object[] rows)
         {
-            
-            
+
+
             await using var conn = new NpgsqlConnection(connString);
             await conn.OpenAsync();
 
             //await using var cmd = new NpgsqlCommand("INSERT INTO data (some_field) VALUES ($1)", conn);
             //cmd.Parameters.AddWithValue("Hello world");
             //await cmd.ExecuteNonQueryAsync();
-                        
-            await conn.ExecuteAsync(query,rows);
+
+            await conn.ExecuteAsync(query, rows);
             conn.Close();
         }
 
-        public static void Insert(string query,IEnumerable<dynamic> rows)
+        public static void Insert(string query, IEnumerable<dynamic> rows)
         {
             using var conn = new NpgsqlConnection(connString);
             conn.Open();
 
 
-            conn.Execute(query,rows);           
-                        
+            conn.Execute(query, rows);
+
             conn.Close();
         }
 
-        
+
 
         public static async Task ExecuteAsync(string query)
         {
@@ -53,12 +53,12 @@ namespace kb21_tools
             await conn.ExecuteAsync(query);
             conn.Close();
         }
-        
-       
+
+
 
         static public async Task<Ret> SelectAsync(MyArg arg)
         {
-            Ret ret=new();            
+            Ret ret = new();
 
             await using var conn = new NpgsqlConnection(connString);
             await conn.OpenAsync();
@@ -66,11 +66,11 @@ namespace kb21_tools
 
             cmd.AllResultTypesAreUnknown = true;
             await using var reader = await cmd.ExecuteReaderAsync();
-            
-            int row=0;            
+
+            int row = 0;
             while (await reader.ReadAsync())
             {
-                if(row==0)
+                if (row == 0)
                 {
                     ret.SetCols(reader.FieldCount);
 
@@ -111,7 +111,7 @@ namespace kb21_tools
             {
                 var conn = new NpgsqlConnection(connString);
                 conn.Open();
-               
+
                 var cmd = new NpgsqlCommand(arg.Get("query"), conn);
                 cmd.AllResultTypesAreUnknown = true;
                 var reader = cmd.ExecuteReader();
@@ -123,7 +123,7 @@ namespace kb21_tools
                     {
                         ret.SetCols(reader.FieldCount);
                         for (int i = 0; i < reader.FieldCount; i++)
-                            ret.labels[i]=reader.GetName(i);
+                            ret.labels[i] = reader.GetName(i);
                     }
 
                     for (int i = 0; i < reader.FieldCount; i++)

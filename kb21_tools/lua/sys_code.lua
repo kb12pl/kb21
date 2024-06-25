@@ -4,10 +4,12 @@ function win:on_create()
 	ctrl.code:as_code('pp')	
 	
 	win:short('F1',"win:shortF1()")
+	win:short('Ctrl-F1',"win:shortCtrlF1()")
 	win:short('F2',"win:shortF2()")
 	win:short('F3',"win:shortF3()")
-	win:short('F4',"win:shortF4()")		
+	win:short('F4',"win:shortF4()")		
 	win:short('Ctrl-F4',"win:shortF4()")		
+	win:short('F5',"win:shortF5()")			
 	win:short('Ctrl-F5',"win:shortCtrlF5()")		
 	win:short('F6',"ctrl.code:find_next( ctrl.code:getCurrent() )")
 	win:short('F7',"ctrl.code:find_ask()")
@@ -110,8 +112,10 @@ function win:shortF2(mode)
   end
 end
 
-function win:shortF1(insert)
-	local s=kb.get_list('',kb.sys_scripts():work_list())
+function win:shortF1(insert)	
+	--local s=kb.get_list('',kb.sys_scripts():work_list())	--ok(s)
+	local s=kb.get_list_query('',"select name,name from kb_scripts")
+	
 	if not s then
 		return
 	end	
@@ -120,6 +124,11 @@ function win:shortF1(insert)
 		return 
 	end			
 	win:load_script(s)
+end
+
+
+function win:shortCtrlF1(insert)
+	ok(123)
 end
 
 
@@ -151,6 +160,11 @@ function win:shortF11()
 	kb.sys_dialog('sys_query')
 end
 
+
+function win:shortF5()
+	self:shortF3()
+	kb.sys_test()
+end
 
 function win:shortCtrlF5()
 

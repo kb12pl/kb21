@@ -15,10 +15,12 @@ function this:create_list()
 	--list.tech_e={window='Tech-E1', title='Edycja Technologii',work=true}
 	
 	self:add('get_list')
+	self:add('get_list_query')
 	self:add('get_text_empty_stop',true,true)
 	self:add('get_text',true,true)
 	
-	self:add('kb21_frame',true,true)		self:add('sql',true,true)
+	self:add('kb21_test',true,true)		self:add('sql',true,true)
+	self:add('sql_list',true,true)
 	self:add('sql_tab',true,true)
 	self:add('sql_tabn',true,true)
 	
@@ -40,7 +42,7 @@ function this:create_list()
 	self:add('sys_scripts',true,true)
 	self:add('sys_scripts_win',true,true,'sys_scripts_win',true,'Sys scripts')
 	self:add('sys_tables',true,true,'sys_tables',true,'Sys tables')
-	self:add('sys_testy',true,true)
+	self:add('sys_test',true,true)
 	self:add('sys_window',true,true)
 	
 	

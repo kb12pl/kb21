@@ -17,7 +17,7 @@ namespace kb21_wpf
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
-            Title = "Bite it - Rcp ver-1.0";
+            Title = "Kb21 v2.0";
 
             LogInit((string s)=>System.Windows.MessageBox.Show(s), null);                        
             Loaded += MyLoaded;

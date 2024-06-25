@@ -133,7 +133,7 @@ function win:doScript(name)
 end
 
 function win:readScript(name)
-    if not name or name=='' then
+	if not name or name=='' then
 		win:error("read script no name")
 	end
 		

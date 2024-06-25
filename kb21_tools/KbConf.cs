@@ -1,4 +1,5 @@
-﻿using System;
+﻿global using static kb21_tools.KbLog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Npgsql.Replication;
-using static kb21_tools.KbLog;
 
 namespace kb21_tools
 {
@@ -27,6 +27,10 @@ function ok(kom)
 end
 
 dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')";
+
+
+
+
         static KbConf()
         {
             dict["test"] = "123";
@@ -57,9 +61,10 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             dict["window_on_load_event"] = "on_load";
         }
         public static string GetSecret(string key)
-        {
-            Load();
-            return dictSecret[key];
+        {          
+            
+            Load();            
+            return dictSecret[Get("secret_prefix")+"."+key];
             
         }
 
