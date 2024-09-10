@@ -30,8 +30,7 @@ end
 })
 gt2=fgt
 
-function fgt.sqlQuery(query)   
-   ok(query);
+function fgt.sqlQuery(query)      
    local tab=win:sql(query)    
    if tab[1] then
     return tab[1][1]
