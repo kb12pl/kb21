@@ -17,7 +17,7 @@ namespace kb21_wpf
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
-            Title = "Kb21 v2.0";
+            Title = "kb21 v.2.0";
 
             LogInit((string s)=>System.Windows.MessageBox.Show(s), null);                        
             Loaded += MyLoaded;
@@ -32,7 +32,9 @@ namespace kb21_wpf
                 win.lua.DoScript(Environment.GetCommandLineArgs()[1]);
             }                
             else
-                ok("no start args");
+                win.lua.DoScript("kb21_test");
+            
+                //ok("no start args");
         }
 
 

@@ -10,6 +10,7 @@ var lua = new KbLua(new MyProgramIntegration());
 
 while (true)
 {
+    KbConf.Set("secret_prefix", "console");
     lua.DoScript("kb21_console");
     var time = KbConf.GetInt("console_loop_time", 60000);
     await Task.Delay(time);

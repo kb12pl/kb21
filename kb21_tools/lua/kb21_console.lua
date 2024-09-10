@@ -4,12 +4,14 @@ xlogd=ok
 
 fgt={}
 
+ok(123);
+
 function fgt.gt_wersja_systemu()
     return 0
 end
 
 function fgt.SystemGetSkrypt(script)  
-  local tab=win:sql("select zdarzenie_tr from bbzdarzenia where zdarzenie_sb='" .. script .. "'")    
+  local tab=win:sql("select zdarzenie_tr from bbzdarzenia where zdarzenie_sb='" .. script .. "'")      
   return tab[1][1]
 end
 
@@ -29,6 +31,7 @@ end
 gt2=fgt
 
 function fgt.sqlQuery(query)   
+   ok(query);
    local tab=win:sql(query)    
    if tab[1] then
     return tab[1][1]
@@ -95,6 +98,7 @@ function xlogd(...)
     xlog('\n"xlogd" '..sys_x_position(3))
     xlog(...)      
 end
+
 
 fgt.SystemProtectedMode(fgt.SystemZdarzenieFunkcjaFrameTimeServer,true)
 

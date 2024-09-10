@@ -35,7 +35,7 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
         {
             dict["test"] = "123";
             dict["B12_Integretion_Object"] = "B12_Integretion_Object";
-            dict["secret_config_file"] = "c:/repo1/config.txt";
+            dict["secret_config_file"] = "c:/repo1/config.txt";            
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -59,11 +59,14 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
             dict["frame_init_script"] = "kb.sys_boot()";
             dict["new_window_init_script"] = "win:on_boot()";
             dict["window_on_load_event"] = "on_load";
+
         }
         public static string GetSecret(string key)
         {          
             
-            Load();            
+            Load();          
+            
+
             return dictSecret[Get("secret_prefix")+"."+key];
             
         }
@@ -103,13 +106,16 @@ dofile(B12_Integretion_Object:GetConfig('prefix_file_script')..'sys_window.lua')
 
         static void Load()
         {
+            
             if (isLoad)
                 return;
             try
             {
                 Dictionary<string, string>? tmp;
                 string s;
+            
                 s = File.ReadAllText(Get("secret_config_file"));
+                
                 tmp = JsonConvert.DeserializeObject<Dictionary<string, string>>(s);
                 if (tmp is not null)
                     dictSecret = tmp;

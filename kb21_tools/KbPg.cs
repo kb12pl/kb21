@@ -90,14 +90,20 @@ namespace kb21_tools
             Ret ret = new();
             try
             {
-                using var conn = new NpgsqlConnection(connString);
-                conn.Open();
-                conn.Execute(query);
-                conn.Close();
+                using (var conn = new NpgsqlConnection(connString))
+                {
+                    conn.Open();
+                    conn.Execute(query);                 
+                }
             }
             catch (NpgsqlException ex)
             {
-                ret.SetError(ex.Message);
+                ret.SetError(ex.Message);                
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                ret.SetError("Unexpected error occured:" + ex.Message);
                 return ret;
             }
 
@@ -109,32 +115,37 @@ namespace kb21_tools
             Ret ret = new();
             try
             {
-                var conn = new NpgsqlConnection(connString);
-                conn.Open();
-
-                var cmd = new NpgsqlCommand(arg.Get("query"), conn);
-                cmd.AllResultTypesAreUnknown = true;
-                var reader = cmd.ExecuteReader();
-
-                int row = 0;
-                while (reader.Read())
+                using (var conn = new NpgsqlConnection(connString))
                 {
-                    if (row == 0)
-                    {
-                        ret.SetCols(reader.FieldCount);
-                        for (int i = 0; i < reader.FieldCount; i++)
-                            ret.labels[i] = reader.GetName(i);
-                    }
+                    conn.Open();
 
-                    for (int i = 0; i < reader.FieldCount; i++)
-                        if (reader.IsDBNull(i))
-                            ret.Set(row, i, "");
-                        else
-                            ret.Set(row, i, reader.GetString(i));
-                    row++;
+                    using (var cmd = new NpgsqlCommand(arg.Get("query"), conn))
+                    {
+                        cmd.AllResultTypesAreUnknown = true;
+                        using (var reader = cmd.ExecuteReader())
+                        {
+
+                            int row = 0;
+                            while (reader.Read())
+                            {
+                                if (row == 0)
+                                {
+                                    ret.SetCols(reader.FieldCount);
+                                    for (int i = 0; i < reader.FieldCount; i++)
+                                        ret.labels[i] = reader.GetName(i);
+                                }
+
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                    if (reader.IsDBNull(i))
+                                        ret.Set(row, i, "");
+                                    else
+                                        ret.Set(row, i, reader.GetString(i));
+                                row++;
+                            }
+                            ret.SetRows(row);
+                        }
+                    }
                 }
-                ret.SetRows(row);
-                conn.Close();
             }
             catch (NpgsqlException ex)
             {
