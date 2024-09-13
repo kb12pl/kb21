@@ -8,6 +8,6 @@ namespace kb21_tools
 {
     internal class KbImap
     {
-        //something local 
+        //something from lap
     }
 }
